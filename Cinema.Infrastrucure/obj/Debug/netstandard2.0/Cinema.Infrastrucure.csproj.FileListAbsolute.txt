@@ -1,0 +1,12 @@
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\bin\Debug\netstandard2.0\Cinema.Infrastrucure.deps.json
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\bin\Debug\netstandard2.0\Cinema.Infrastrucure.dll
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\bin\Debug\netstandard2.0\Cinema.Infrastrucure.pdb
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\bin\Debug\netstandard2.0\Cinema.Model.dll
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\bin\Debug\netstandard2.0\Cinema.Model.pdb
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\obj\Debug\netstandard2.0\Cinema.Infrastrucure.csprojAssemblyReference.cache
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\obj\Debug\netstandard2.0\Cinema.Infrastrucure.csproj.CoreCompileInputs.cache
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\obj\Debug\netstandard2.0\Cinema.Infrastrucure.AssemblyInfoInputs.cache
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\obj\Debug\netstandard2.0\Cinema.Infrastrucure.AssemblyInfo.cs
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\obj\Debug\netstandard2.0\Cinema.Infrastrucure.csproj.CopyComplete
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\obj\Debug\netstandard2.0\Cinema.Infrastrucure.dll
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Infrastrucure\obj\Debug\netstandard2.0\Cinema.Infrastrucure.pdb

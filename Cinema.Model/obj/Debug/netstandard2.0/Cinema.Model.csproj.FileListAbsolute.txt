@@ -1,0 +1,9 @@
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Model\bin\Debug\netstandard2.0\Cinema.Model.deps.json
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Model\bin\Debug\netstandard2.0\Cinema.Model.dll
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Model\bin\Debug\netstandard2.0\Cinema.Model.pdb
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Model\obj\Debug\netstandard2.0\Cinema.Model.csprojAssemblyReference.cache
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Model\obj\Debug\netstandard2.0\Cinema.Model.csproj.CoreCompileInputs.cache
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Model\obj\Debug\netstandard2.0\Cinema.Model.AssemblyInfoInputs.cache
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Model\obj\Debug\netstandard2.0\Cinema.Model.AssemblyInfo.cs
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Model\obj\Debug\netstandard2.0\Cinema.Model.dll
+C:\Users\ksmol\Desktop\Cinema Web Application\src\Cinema.Model\obj\Debug\netstandard2.0\Cinema.Model.pdb
