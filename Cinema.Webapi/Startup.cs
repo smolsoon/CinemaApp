@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 using Cinema.Infrastrucure.Database;
 using Cinema.Infrastrucure.Repositories;
 using Cinema.Infrastrucure.Settings;
@@ -14,10 +15,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Formatting = Newtonsoft.Json.Formatting;
 
 namespace Cinema.Webapi
 {
-    public class Startup
+   public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -30,16 +32,20 @@ namespace Cinema.Webapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.Formatting = Formatting.Indented;
+            });
+            services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddTransient<IDatabaseContext,DatabaseContext>();
+
             services.Configure<DatabaseSettings>(options =>
             {
-                options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
-                options.Database = Configuration.GetSection("MongoDb:Database").Value;
+                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
             });
-            services.AddTransient<IMovieRepository, MovieRepository>();
-            services.AddTransient<IDatabaseContext, DatabaseContext>();
-        }
-        
 
+        }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

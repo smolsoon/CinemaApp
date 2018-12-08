@@ -7,7 +7,7 @@ namespace Cinema.Infrastrucure.Database
 {
     public class DatabaseContext : IDatabaseContext
     {
-        private readonly IMongoDatabase _database;
+        private readonly IMongoDatabase _database = null;
 
         public DatabaseContext(IOptions<DatabaseSettings> options)
         {
