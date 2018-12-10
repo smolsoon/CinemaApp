@@ -1,14 +1,15 @@
 using System.Threading.Tasks;
+using Cinema.Infrastrucure.DTO;
+using Cinema.Infrastrucure.Repositories;
 using Cinema.Model.Domain;
-using Cinema.Model.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cinema.Webapi.Controllers
 {
-    
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class MovieController : Controller
+    [ApiController]
+    public class MovieController : ControllerBase
     {
         private readonly IMovieRepository _repository;
         public MovieController(IMovieRepository repository)
@@ -34,14 +35,14 @@ namespace Cinema.Webapi.Controllers
         }
 
         [HttpPost] //POST: api/movie
-        public async Task<IActionResult> Post([FromBody]Movie movie)
+        public async Task<IActionResult> Post([FromBody]MovieDTO movie)
         {
             await _repository.Create(movie);
             return new ObjectResult(movie);
         }
 
         [HttpPut("title")] //PUT: api/movie/title
-        public async Task<IActionResult> Put(string title, [FromBody]Movie movie)
+        public async Task<IActionResult> Put(string title, [FromBody]MovieDTO movie)
         {
             var movieFromDatabase = await _repository.Get(title);
             if(movieFromDatabase == null)

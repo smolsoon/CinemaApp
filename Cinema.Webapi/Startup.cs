@@ -6,7 +6,6 @@ using System.Xml;
 using Cinema.Infrastrucure.Database;
 using Cinema.Infrastrucure.Repositories;
 using Cinema.Infrastrucure.Settings;
-using Cinema.Model.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,11 +38,12 @@ namespace Cinema.Webapi
             services.AddCors();
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddTransient<IDatabaseContext,DatabaseContext>();
-
+            services.AddSingleton(AutoMapperConfiguration.Initialize());
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.Configure<DatabaseSettings>(options =>
             {
-                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
-                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+                options.ConnectionString= Configuration.GetSection("MongoDb:ConnectionString").Value; 
+                options.Database = Configuration.GetSection("MongoDb:Database").Value;
             });
 
         }
