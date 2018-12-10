@@ -14,5 +14,9 @@ namespace Cinema.Infrastrucure.DTO
         public string Type {get;set;} // gatunek
         public string Director {get;set;} // rezyser
         public string Producer {get;set;} // producent
+        public string PhotoUrl { get; set; }
+        public int TicketsCount { get; set; }
+        public int PurchasedTicketsCount { get; set; }
+        public int AvailableTicketsCount { get; set; }
     }
 }

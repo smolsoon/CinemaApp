@@ -15,7 +15,8 @@ namespace Cinema.Model.Domain
         public string Type { get; protected set; } // gatunek
         public string Director { get; protected set; } // rezyser
         public string Producer { get; protected set; } // producent
-        public ICollection<Photo> Photos { get;set; }
+        public DateTime Time { get; protected set;} // czas filmu
+        public ICollection<Photo> Photos { get;set; } //  
         public IEnumerable<Ticket> Tickets => _tickets;
         public IEnumerable<Ticket> PurchasedTickets => Tickets.Where(x => x.Purchased);
         public IEnumerable<Ticket> AvailableTickets => Tickets.Except(PurchasedTickets);

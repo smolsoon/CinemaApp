@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Cinema.Infrastrucure.DTO;
 using Cinema.Infrastrucure.Repositories;
@@ -37,6 +38,7 @@ namespace Cinema.Webapi.Controllers
         [HttpPost] //POST: api/movie
         public async Task<IActionResult> Post([FromBody]MovieDTO movie)
         {
+            movie.GuidId = Guid.NewGuid();
             await _repository.Create(movie);
             return new ObjectResult(movie);
         }

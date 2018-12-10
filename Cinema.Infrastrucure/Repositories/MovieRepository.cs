@@ -27,7 +27,8 @@ namespace Cinema.Infrastrucure.Repositories
         public async Task<MovieDTO> Get(string title)
         {
             FilterDefinition<MovieDTO> filter = Builders<MovieDTO>.Filter.Eq(m=>m.Title,title);
-            return await _database.Movies.Find(filter).FirstOrDefaultAsync();
+            var movie = await _database.Movies.Find(filter).FirstOrDefaultAsync();
+            return _mapper.Map<MovieDTO>(movie);
         }
         public async Task Create(MovieDTO movie)
         {

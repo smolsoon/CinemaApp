@@ -1,9 +1,15 @@
 using System;
+using System.Collections.Generic;
 
 namespace Cinema.Model.Domain
 {
     public class User : Entity
     {
+        private static List<string> _roles = new List<string>
+        {
+            "user", "admin"
+        };
+        public string Role { get; protected set; }
         public string Name {get; protected set;}
         public string Email {get; protected set;}
         public string Password {get; protected set;}
@@ -15,6 +21,7 @@ namespace Cinema.Model.Domain
         public User(Guid id, string role, string name, string email, string password)
         {
             GuidId = id;
+            SetRole(role);
             SetName(name);
             SetEmail(email);
             Password = password;
@@ -47,5 +54,20 @@ namespace Cinema.Model.Domain
             }
             Password = password;
         }
+
+        public void SetRole(string role)
+        {
+            if(string.IsNullOrWhiteSpace(role))
+            {
+                throw new Exception($"User can not have an empty role.");
+            }
+            role = role.ToLowerInvariant();
+            if(!_roles.Contains(role))
+            {
+                throw new Exception($"User can not have a role: '{role}'.");
+            }
+            Role = role;
+        }
+
     }
 }
