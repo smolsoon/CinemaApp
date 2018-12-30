@@ -3,38 +3,38 @@ using System.Collections.Generic;
 
 namespace Cinema.Model.Domain
 {
-    public class User : Entity
+    public class User 
     {
         private static List<string> _roles = new List<string>
         {
             "user", "admin"
         };
+        public Guid Id { get; protected set; }
+        public string Username { get; protected set; }
         public string Role { get; protected set; }
-        public string Name {get; protected set;}
         public string Email {get; protected set;}
         public string Password {get; protected set;}
         public DateTime CreatedAt {get; protected set;}
 
         protected User()
         {}
-
-        public User(Guid id, string role, string name, string email, string password)
+        public User(Guid id, string role, string username, string email, string password)
         {
-            GuidId = id;
+            Id = id;
             SetRole(role);
-            SetName(name);
+            SetUsername(username);
             SetEmail(email);
             Password = password;
             CreatedAt = DateTime.UtcNow;
         }
 
-        public void SetName(string name)
+        public void SetUsername(string username)
         {
-            if(string.IsNullOrWhiteSpace(name))
+            if(string.IsNullOrWhiteSpace(username))
             {
-                throw new Exception("User can not have an empty name");
+                throw new Exception("User can not have an empty username");
             }
-            Name = name;
+            Username = username;
         }
 
         public void SetEmail(string email)

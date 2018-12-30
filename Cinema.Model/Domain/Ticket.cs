@@ -18,7 +18,7 @@ namespace Cinema.Model.Domain
 
         public Ticket(Movie movie, int seating, decimal price)
         {
-            MovieId = movie.GuidId;
+            MovieId = movie.Id;
             Seating = seating;
             Price = price;
         }
@@ -29,8 +29,8 @@ namespace Cinema.Model.Domain
             {
                 throw new Exception($"Ticket was already purchased by user: '{Username}' at: {PurchasedAt}'.");
             }
-            UserId = user.GuidId;
-            Username = user.Name;
+            UserId = user.Id;
+            Username = user.Username;
             PurchasedAt = DateTime.UtcNow;
         }
 

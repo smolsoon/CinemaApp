@@ -1,45 +1,34 @@
 using System;
 using System.Threading.Tasks;
-using Cinema.Infrastrucure.DTO;
+using Cinema.Infrastrucure.Database;
 using Cinema.Model.Domain;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using System.Collections.Generic;
 
 namespace Cinema.Infrastrucure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public Task CreateUser(User user)
+        private readonly IDatabaseContext _database;
+        public UserRepository(IDatabaseContext database)
         {
-            throw new NotImplementedException();
+            _database = database;
         }
+        
+        public async Task<User> GetAsync(Guid id)
+            => await _database.Users.AsQueryable().FirstOrDefaultAsync(x => x.Id == id);
 
-        public Task DeleteUser(User user)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<User> GetAsync(string email)
+            => await _database.Users.AsQueryable().FirstOrDefaultAsync(x => x.Email == email);
 
-        public Task<User> GetUserByEmail(string email)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task AddAsync(User user)
+            => await _database.Users.InsertOneAsync(user);
 
-        public Task<User> GetUserById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task DeleteAsync(User user)
+            => await _database.Users.DeleteOneAsync(x => x.Id == user.Id);
 
-        public Task RegisterUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<UserDTO> IUserRepository.GetUserById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task UpdateAsync(User user)
+            => await _database.Users.ReplaceOneAsync(x => x.Id == user.Id, user);
     }
 }

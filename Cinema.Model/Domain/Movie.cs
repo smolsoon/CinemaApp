@@ -7,9 +7,12 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Cinema.Model.Domain
 {
-    public class Movie : Entity
+    public class Movie
     {
         private ISet<Ticket> _tickets = new HashSet<Ticket>();
+        
+        [BsonId]
+        public Guid Id {get;set;}
         public string Title { get; protected set; } // tytul
         public string Description { get; protected set; } // opis
         public string Type { get; protected set; } // gatunek
@@ -25,13 +28,18 @@ namespace Cinema.Model.Domain
 
         public Movie(string title, string description, string type, string director, string producer)
         {
-            GuidId = Guid.NewGuid();
+            Id = Guid.NewGuid();   
             Title = title;
             Description = description;
             Type = type;
             Director = director;
             Producer = producer;
             Photos = new Collection<Photo>();
+        }
+        
+        public Movie(string username)
+        {
+            
         }
     }
     

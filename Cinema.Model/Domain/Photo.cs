@@ -2,7 +2,7 @@ using System;
 
 namespace Cinema.Model.Domain
 {
-    public class Photo : Entity
+    public class Photo 
     {
         public string Url { get; set; }
         public Movie movie { get; set; }

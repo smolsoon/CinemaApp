@@ -15,7 +15,9 @@ namespace Cinema.Infrastrucure.Database
             var client = new MongoClient(options.Value.ConnectionString);
             _database = client.GetDatabase(options.Value.Database);
         }
-        public IMongoCollection<MovieDTO> Movies => _database.GetCollection<MovieDTO>("Movies");
-        public IMongoCollection<UserDTO> Users => _database.GetCollection<UserDTO>("User");
+        //public IMongoCollection<Movie> Movies => _database.GetCollection<Movie>("Movies");
+
+        public IMongoCollection<User> Users =>  _database.GetCollection<User>("User");
+
     }
 }
