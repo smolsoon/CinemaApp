@@ -8,16 +8,17 @@ namespace Cinema.Infrastrucure.Database
 {
     public class DatabaseContext : IDatabaseContext
     {
-        private readonly IMongoDatabase _database ;
+        private readonly IMongoDatabase _database = null;
 
         public DatabaseContext(IOptions<DatabaseSettings> options)
         {
             var client = new MongoClient(options.Value.ConnectionString);
-            _database = client.GetDatabase(options.Value.Database);
+            if(client != null)
+                _database = client.GetDatabase(options.Value.Database);
         }
         //public IMongoCollection<Movie> Movies => _database.GetCollection<Movie>("Movies");
 
-        public IMongoCollection<User> Users =>  _database.GetCollection<User>("User");
+        public IMongoCollection<User> Users =>  _database.GetCollection<User>("Users");
 
     }
 }

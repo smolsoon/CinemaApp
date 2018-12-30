@@ -14,15 +14,22 @@ namespace Cinema.Infrastrucure.Services
         private readonly IJwtHandler _jwtHandler;
         private readonly IMapper _mapper;
 
+        public UserService(IUserRepository userRepository, IJwtHandler jwtHandler, IMapper mapper)
+        {
+            _userRepository = userRepository;
+            _jwtHandler = jwtHandler;
+            _mapper = mapper;
+        }
         public async Task<AccountDTO> GetAccountAsync(Guid userId)
         {
             var user = await _userRepository.GetAsync(userId);
+            
             return _mapper.Map<AccountDTO>(user);
         }
 
-        public async Task<TokenDTO> LoginAsync(string email, string password)
+        public async Task<TokenDTO> LoginAsync(string username, string password)
         {
-            var user = await _userRepository.GetAsync(email);
+            var user = await _userRepository.GetAsync(username);
             if(user == null)
             {
                 throw new Exception("Invalid credentials.");
@@ -31,7 +38,7 @@ namespace Cinema.Infrastrucure.Services
             {
                 throw new Exception("Invalid credentials.");
             }
-            var jwt = _jwtHandler.CreateToken(user.Id, user.Role);
+            var jwt = _jwtHandler.CreateToken(user.Idd, user.Role);
 
             return new TokenDTO
             {
@@ -41,14 +48,14 @@ namespace Cinema.Infrastrucure.Services
             };
         }
 
-        public async Task RegisterAsync(Guid userId, string email, string name, string password, string role = "user")
+        public async Task RegisterAsync(Guid userId, string email, string username, string password, string role = "user")
         {
             var user = await _userRepository.GetAsync(email);
             if(user != null)
             {
                 throw new Exception($"User with email: '{email}' already exists.");
             }
-            user = new User(userId, role, name, email, password);
+            user = new User(userId, role, username, email, password);
             await _userRepository.AddAsync(user);
         }
     }

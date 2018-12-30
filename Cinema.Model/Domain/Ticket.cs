@@ -12,37 +12,37 @@ namespace Cinema.Model.Domain
         public DateTime? PurchasedAt { get; protected set; }
         public bool Purchased => UserId.HasValue;
 
-        protected Ticket()
-        {
-        }
+        // protected Ticket()
+        // {
+        // }
 
-        public Ticket(Movie movie, int seating, decimal price)
-        {
-            MovieId = movie.Id;
-            Seating = seating;
-            Price = price;
-        }
+        // public Ticket(Movie movie, int seating, decimal price)
+        // {
+        //     MovieId = movie.Id;
+        //     Seating = seating;
+        //     Price = price;
+        // }
 
-        public void Purchase(User user)
-        {
-            if(Purchased)
-            {
-                throw new Exception($"Ticket was already purchased by user: '{Username}' at: {PurchasedAt}'.");
-            }
-            UserId = user.Id;
-            Username = user.Username;
-            PurchasedAt = DateTime.UtcNow;
-        }
+        // public void Purchase(User user)
+        // {
+        //     if(Purchased)
+        //     {
+        //         throw new Exception($"Ticket was already purchased by user: '{Username}' at: {PurchasedAt}'.");
+        //     }
+        //     UserId = user.Idd;
+        //     Username = user.Username;
+        //     PurchasedAt = DateTime.UtcNow;
+        // }
 
-        public void Cancel()
-        {
-            if(!Purchased)
-            {
-                throw new Exception($"Ticket was not purchased and can not be canceled.");
-            }
-            UserId = null;
-            Username = null;
-            PurchasedAt = null;
-        }        
+        // public void Cancel()
+        // {
+        //     if(!Purchased)
+        //     {
+        //         throw new Exception($"Ticket was not purchased and can not be canceled.");
+        //     }
+        //     UserId = null;
+        //     Username = null;
+        //     PurchasedAt = null;
+        //}        
     }
 }

@@ -17,7 +17,7 @@ namespace Cinema.Infrastrucure.Repositories
         }
         
         public async Task<User> GetAsync(Guid id)
-            => await _database.Users.AsQueryable().FirstOrDefaultAsync(x => x.Id == id);
+            => await _database.Users.AsQueryable().FirstOrDefaultAsync(x => x.Idd == id);
 
         public async Task<User> GetAsync(string email)
             => await _database.Users.AsQueryable().FirstOrDefaultAsync(x => x.Email == email);
@@ -26,9 +26,9 @@ namespace Cinema.Infrastrucure.Repositories
             => await _database.Users.InsertOneAsync(user);
 
         public async Task DeleteAsync(User user)
-            => await _database.Users.DeleteOneAsync(x => x.Id == user.Id);
+            => await _database.Users.DeleteOneAsync(x => x.Idd == user.Idd);
 
         public async Task UpdateAsync(User user)
-            => await _database.Users.ReplaceOneAsync(x => x.Id == user.Id, user);
+            => await _database.Users.ReplaceOneAsync(x => x.Idd == user.Idd, user);
     }
 }

@@ -36,11 +36,5 @@ namespace Cinema.Model.Domain
             Producer = producer;
             Photos = new Collection<Photo>();
         }
-        
-        public Movie(string username)
-        {
-            
-        }
     }
-    
 }

@@ -8,8 +8,8 @@ namespace Cinema.Infrastrucure.Services
     {
         Task<AccountDTO> GetAccountAsync(Guid userId);
         Task RegisterAsync(Guid userId, string email,
-            string name, string password, string role = "user");
+            string username, string password, string role = "user");
 
-        Task<TokenDTO> LoginAsync(string email, string password);
+        Task<TokenDTO> LoginAsync(string username, string password);
     }
 }
