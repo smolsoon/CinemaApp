@@ -41,9 +41,12 @@ namespace Cinema.Webapi
             });
             
             services.AddCors();
+            services.AddAuthorization(x => x.AddPolicy("HasAdminRole", p => p.RequireRole("admin")));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IJwtHandler,JwtHandler>();
+            services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IMovieService, MovieService>();
+            services.AddSingleton<IJwtHandler,JwtHandler>();
             services.AddTransient<IDatabaseContext,DatabaseContext>();
             services.AddSingleton(AutoMapperConfiguration.Initialize());
             services.Configure<JWTSettings>(Configuration.GetSection("jwt"));

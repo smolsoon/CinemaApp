@@ -6,7 +6,7 @@ namespace Cinema.Infrastrucure.Database
 {
     public interface IDatabaseContext
     {
-         //IMongoCollection<Movie> Movies ();
+         IMongoCollection<Movie> Movies {get;}
          IMongoCollection<User> Users {get;}
     }
 }

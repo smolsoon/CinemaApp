@@ -16,7 +16,7 @@ namespace Cinema.Infrastrucure.Database
             if(client != null)
                 _database = client.GetDatabase(options.Value.Database);
         }
-        //public IMongoCollection<Movie> Movies => _database.GetCollection<Movie>("Movies");
+        public IMongoCollection<Movie> Movies => _database.GetCollection<Movie>("Movies");
 
         public IMongoCollection<User> Users =>  _database.GetCollection<User>("Users");
 

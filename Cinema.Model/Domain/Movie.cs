@@ -7,12 +7,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Cinema.Model.Domain
 {
-    public class Movie
+    public class Movie : Entity
     {
-        private ISet<Ticket> _tickets = new HashSet<Ticket>();
-        
         [BsonId]
-        public Guid Id {get;set;}
+        public ObjectId Id { get; set;}
         public string Title { get; protected set; } // tytul
         public string Description { get; protected set; } // opis
         public string Type { get; protected set; } // gatunek
@@ -20,21 +18,29 @@ namespace Cinema.Model.Domain
         public string Producer { get; protected set; } // producent
         public DateTime Time { get; protected set;} // czas filmu
         public ICollection<Photo> Photos { get;set; } //  
+        private ISet<Ticket> _tickets = new HashSet<Ticket>();
         public IEnumerable<Ticket> Tickets => _tickets;
         public IEnumerable<Ticket> PurchasedTickets => Tickets.Where(x => x.Purchased);
         public IEnumerable<Ticket> AvailableTickets => Tickets.Except(PurchasedTickets);
 
         protected Movie(){}
 
-        public Movie(string title, string description, string type, string director, string producer)
+        public Movie(Guid id, string title, string description, DateTime time)
         {
-            Id = Guid.NewGuid();   
+            Idd = id;   
             Title = title;
             Description = description;
-            Type = type;
-            Director = director;
-            Producer = producer;
-            Photos = new Collection<Photo>();
+            Time = DateTime.UtcNow;
+        }
+
+        public void AddTickets(int amount, decimal price)
+        {
+            var seating = _tickets.Count + 1;
+            for(var i=0; i<amount; i++)
+            {
+                _tickets.Add(new Ticket(this, seating, price));
+                seating++;
+            }
         }
     }
 }

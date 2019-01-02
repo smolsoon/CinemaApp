@@ -12,16 +12,16 @@ namespace Cinema.Model.Domain
         public DateTime? PurchasedAt { get; protected set; }
         public bool Purchased => UserId.HasValue;
 
-        // protected Ticket()
-        // {
-        // }
+        protected Ticket()
+        {
+        }
 
-        // public Ticket(Movie movie, int seating, decimal price)
-        // {
-        //     MovieId = movie.Id;
-        //     Seating = seating;
-        //     Price = price;
-        // }
+        public Ticket(Movie movie, int seating, decimal price)
+        {
+            MovieId = movie.Idd;
+            Seating = seating;
+            Price = price;
+        }
 
         // public void Purchase(User user)
         // {

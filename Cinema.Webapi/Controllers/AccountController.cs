@@ -22,7 +22,6 @@ namespace Cinema.Webapi.Controllers
         //[Authorize]
         public async Task<IActionResult> Get()
         {
-            System.Console.WriteLine("guwno");
             return Json(await _userService.GetAccountAsync(UserId));
         }
 
