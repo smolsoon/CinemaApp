@@ -9,23 +9,25 @@ namespace Cinema.Webapi.Controllers
 {
     public class AccountController : ApiControllerBase
     {
-        private IUserService _userService;
-        // ticket
+        private readonly IUserService _userService;
+        private readonly ITicketService _ticketService;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService, ITicketService ticketService)
         {
             _userService = userService;
+            _ticketService = ticketService;
         }
 
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Get()
-        {
-            return Json(await _userService.GetAccountAsync(UserId));
-        }
-
-        //GetTicket
+            => Json(await _userService.GetAccountAsync(UserId));
+        
+        [HttpGet("tickets")]
+        [Authorize]
+        public async Task<IActionResult> GetTickets()
+            => Json(await _ticketService.GetForUserAsync(UserId));
 
         [HttpPost("register")]
         public async Task<IActionResult> Post([FromBody] Register command)

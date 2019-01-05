@@ -7,14 +7,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cinema.Webapi.Controllers
 {
-    [Route("[controller]")]
-    public class MovieController : ApiControllerBase
+    [Route("api/[controller]")]
+    public class MoviesController : ApiControllerBase
     {
         private readonly IMovieService _movieService;
-        public MovieController(IMovieService movieService)
+        public MoviesController(IMovieService movieService)
         {
             _movieService = movieService;
         }
+
+        // [HttpGet]
+        // public async Task<IActionResult> Get(string name)
+        // {
+        //     var movie = _movieService.BrowseAsync<IEnumerable<MovieDTO>>("events");
+        //     if(movie == null)
+        //     {
+        //         movie = await _movieService.BrowseAsync(name);
+        //     }
+
+        //     return Json(movie);
+        // }
 
         [HttpGet("{movieId}")]
         public async Task<IActionResult> Get(Guid movieId)
@@ -33,7 +45,7 @@ namespace Cinema.Webapi.Controllers
         {
             var movie = await _movieService.BrowseAsync(title);
 
-            return Json(movie);
+            return Ok(movie);
         }
 
     }

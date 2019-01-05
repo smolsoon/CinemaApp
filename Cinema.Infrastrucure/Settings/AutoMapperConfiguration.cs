@@ -12,6 +12,7 @@ namespace Cinema.Infrastrucure.Settings
             cfg.CreateMap<Movie,MovieDTO>();
             cfg.CreateMap<Movie,MovieDetailsDTO>();
             cfg.CreateMap<Ticket,TicketDTO>();
+            cfg.CreateMap<Ticket,TicketDetailsDTO>();
         }).CreateMapper();
 
         

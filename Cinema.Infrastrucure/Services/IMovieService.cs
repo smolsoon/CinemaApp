@@ -10,8 +10,7 @@ namespace Cinema.Infrastrucure.Services
         Task<MovieDetailsDTO> GetAsync(Guid id);
         Task<MovieDetailsDTO> GetAsync(string title);
         Task<IEnumerable<MovieDTO>> BrowseAsync(string title = null);
-        Task CreateAsync(Guid id, string title, string description,
-            DateTime time);
+        Task CreateAsync(Guid id, string title, string description);
         Task AddTicketsAsync(Guid movieId, int amount, decimal price);
         Task UpdateAsync(Guid id, string title, string description);  
        Task DeleteAsync(Guid id);

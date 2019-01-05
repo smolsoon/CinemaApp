@@ -5,15 +5,17 @@ using Cinema.Model.Domain;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.Collections.Generic;
+using Microsoft.Extensions.Options;
+using Cinema.Infrastrucure.Settings;
 
 namespace Cinema.Infrastrucure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly IDatabaseContext _database;
-        public UserRepository(IDatabaseContext database)
+        private readonly AuthContext  _database = null;
+        public UserRepository(IOptions<DatabaseSettings> settings)
         {
-            _database = database;
+            _database = new AuthContext(settings);
         }
         
         public async Task<User> GetAsync(Guid id)

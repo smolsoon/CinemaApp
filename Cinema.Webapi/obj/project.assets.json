@@ -12834,11 +12834,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Webapi\\Cinema.Webapi.csproj",
+      "projectUniqueName": "c:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Webapi\\Cinema.Webapi.csproj",
       "projectName": "Cinema.Webapi",
-      "projectPath": "C:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Webapi\\Cinema.Webapi.csproj",
+      "projectPath": "c:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Webapi\\Cinema.Webapi.csproj",
       "packagesPath": "C:\\Users\\ksmol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Webapi\\obj\\",
+      "outputPath": "c:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Webapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12857,8 +12857,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Infrastrucure\\Cinema.Infrastrucure.csproj": {
-              "projectPath": "C:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Infrastrucure\\Cinema.Infrastrucure.csproj"
+            "c:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Infrastrucure\\Cinema.Infrastrucure.csproj": {
+              "projectPath": "c:\\Users\\ksmol\\Desktop\\Cinema Web Application\\src\\Cinema.Infrastrucure\\Cinema.Infrastrucure.csproj"
             }
           }
         }

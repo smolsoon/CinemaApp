@@ -46,8 +46,8 @@ namespace Cinema.Webapi
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<ITicketService, TicketService>();
             services.AddSingleton<IJwtHandler,JwtHandler>();
-            services.AddTransient<IDatabaseContext,DatabaseContext>();
             services.AddSingleton(AutoMapperConfiguration.Initialize());
             services.Configure<JWTSettings>(Configuration.GetSection("jwt"));
             //services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
