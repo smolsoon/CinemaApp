@@ -23,19 +23,16 @@ namespace Cinema.Infrastrucure.Services
         public async Task<AccountDTO> GetAccountAsync(Guid userId)
         {
             var user = await _userRepository.GetAsync(userId);
-            
             return _mapper.Map<AccountDTO>(user);
         }
 
         public async Task<TokenDTO> LoginAsync(string username, string password)
         {
             var user = await _userRepository.GetAsync(username);
-            if(user == null)
-            {
+            if(user == null){
                 throw new Exception("Invalid credentials.");
             }
-            if(user.Password != password)
-            {
+            if(user.Password != password){
                 throw new Exception("Invalid credentials.");
             }
             var jwt = _jwtHandler.CreateToken(user.Idd, user.Role);
@@ -52,9 +49,8 @@ namespace Cinema.Infrastrucure.Services
         {
             var user = await _userRepository.GetAsync(email);
             if(user != null)
-            {
                 throw new Exception($"User with email: '{email}' already exists.");
-            }
+            
             user = new User(userId, role, username, email, password);
             await _userRepository.AddAsync(user);
         }

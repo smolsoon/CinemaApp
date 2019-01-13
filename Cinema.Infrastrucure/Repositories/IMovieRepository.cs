@@ -9,6 +9,7 @@ namespace Cinema.Infrastrucure.Repositories
     {
         Task<Movie> GetAsync(Guid id); 
         Task<Movie> GetAsync(string title);
+        Task<IEnumerable<Movie>> BrowseAsync();
         Task<IEnumerable<Movie>> BrowseAsync(string title = "");
         Task AddAsync(Movie movie);
         Task UpdateAsync(Movie movie);

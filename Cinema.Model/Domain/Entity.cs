@@ -1,14 +1,17 @@
 using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Cinema.Model.Domain
 {
     public class Entity
     {
-        public Guid Idd { get; protected set; }
+        [BsonId]
+        public ObjectId Id { get; protected set; }
 
         protected Entity()
         {
-            Idd = Guid.NewGuid();
+            Id = new ObjectId();
         }
     }
 }

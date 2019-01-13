@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cinema.Webapi.Controllers
 {
+    [Route("api/[controller]")]
     public class AccountController : ApiControllerBase
     {
         private readonly IUserService _userService;
@@ -17,7 +18,6 @@ namespace Cinema.Webapi.Controllers
             _userService = userService;
             _ticketService = ticketService;
         }
-
 
         [HttpGet]
         [Authorize]
@@ -32,14 +32,12 @@ namespace Cinema.Webapi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Post([FromBody] Register command)
         {
-            await _userService.RegisterAsync(Guid.NewGuid(),
-                command.Email, command.Username,command.Password,command.Role);
-
+            await _userService.RegisterAsync(Guid.NewGuid(), command.Email, command.Username,command.Password,command.Role);
             return Created("/account",null);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Post([FromBody]Login command)
-            => Json(await _userService.LoginAsync(command.Username, command.Password));
+            => Json(await _userService.LoginAsync(command.Email, command.Password));
     }
 }

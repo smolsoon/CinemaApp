@@ -38,21 +38,21 @@ namespace Cinema.Infrastrucure.Services
             return _mapper.Map<IEnumerable<MovieDTO>>(movies);
         }
 
-        // public async Task AddTicketsAsync(Guid movieId, int amount, decimal price)
-        // {
-        //     var movie = await _movieRepository.GetOrFailAsync(movieId);
-        //     movie.AddTickets(amount, price);
-        //     await _movieRepository.UpdateAsync(movie);
-        // }
+        public async Task AddTicketsAsync(Guid movieId, int amount, decimal price)
+        {
+            var movie = await _movieRepository.GetOrFailAsync(movieId);
+            movie.AddTickets(amount, price);
+            await _movieRepository.UpdateAsync(movie);
+        }
 
-        public async Task CreateAsync(Guid id, string title, string description)
+        public async Task CreateAsync(Guid id, string title, string description, string type, string director, string producer, DateTime dateTime)
         {
             var movie = await _movieRepository.GetAsync(title);
             if(movie != null)
             {
                 throw new Exception($"Movie titled: '{title}' already exists.");
             }
-            movie = new Movie(id, title, description);
+            movie = new Movie(id, title, description,type,director,producer, dateTime);
             await _movieRepository.AddAsync(movie);
         }
 
@@ -72,11 +72,6 @@ namespace Cinema.Infrastrucure.Services
         {
             var movie = await _movieRepository.GetOrFailAsync(id);
             await _movieRepository.DeleteAsync(movie);
-        }
-
-        public Task AddTicketsAsync(Guid movieId, int amount, decimal price)
-        {
-            throw new NotImplementedException();
         }
     }
 }

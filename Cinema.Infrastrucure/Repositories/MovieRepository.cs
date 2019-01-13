@@ -25,6 +25,12 @@ namespace Cinema.Infrastrucure.Repositories
         public async Task<Movie> GetAsync(string title)
             => await _database.Movies.AsQueryable().FirstOrDefaultAsync(x => x.Title.ToLowerInvariant() == title.ToLowerInvariant());
         
+        public async Task<IEnumerable<Movie>> BrowseAsync()
+        {
+            var movies = _database.Movies.AsQueryable();
+            return await Task.FromResult(movies);
+        }      
+
         public async Task<IEnumerable<Movie>> BrowseAsync(string title = "")
         {
             var movies = _database.Movies.AsQueryable();

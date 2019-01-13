@@ -10,6 +10,6 @@ namespace Cinema.Infrastrucure.Services
         Task RegisterAsync(Guid userId, string email,
             string username, string password, string role = "user");
 
-        Task<TokenDTO> LoginAsync(string username, string password);
+        Task<TokenDTO> LoginAsync(string email, string password);
     }
 }

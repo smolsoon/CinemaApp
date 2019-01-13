@@ -42,6 +42,7 @@ namespace Cinema.Webapi
             
             services.AddCors();
             services.AddAuthorization(x => x.AddPolicy("HasAdminRole", p => p.RequireRole("admin")));
+            services.AddMemoryCache();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IMovieRepository, MovieRepository>();
