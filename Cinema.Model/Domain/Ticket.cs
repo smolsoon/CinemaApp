@@ -6,12 +6,10 @@ namespace Cinema.Model.Domain
 {
     public class Ticket : Entity
     {
-        [BsonId]
-        public ObjectId Id {get; set;}
-        public Guid MovieId { get; protected set; }
+        public ObjectId MovieId { get; protected set; }
         public int Seating { get; protected set; }
         public decimal Price { get; protected set; }
-        public Guid? UserId { get; protected set; }
+        public ObjectId? UserId { get; protected set; }
         public string Username { get; protected set; }
         public DateTime? PurchasedAt { get; protected set; }
         public bool Purchased => UserId.HasValue;
@@ -22,7 +20,7 @@ namespace Cinema.Model.Domain
 
         public Ticket(Movie movie, int seating, decimal price)
         {
-            MovieId = movie.Idd;
+            MovieId = movie._id;
             Seating = seating;
             Price = price;
         }
@@ -33,7 +31,7 @@ namespace Cinema.Model.Domain
             {
                 throw new Exception($"Ticket was already purchased by user: '{Username}' at: {PurchasedAt}'.");
             }
-            UserId = user.Idd;
+            UserId = user._id;
             Username = user.Username;
             PurchasedAt = DateTime.UtcNow;
         }

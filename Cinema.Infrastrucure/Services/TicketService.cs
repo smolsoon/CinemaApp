@@ -6,6 +6,7 @@ using AutoMapper;
 using Cinema.Infrastrucure.DTO;
 using Cinema.Infrastrucure.Extensions;
 using Cinema.Infrastrucure.Repositories;
+using MongoDB.Bson;
 
 namespace Cinema.Infrastrucure.Services
 {
@@ -20,7 +21,7 @@ namespace Cinema.Infrastrucure.Services
             _movieRepository = movieRepository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<TicketDetailsDTO>> GetForUserAsync(Guid userId)
+        public async Task<IEnumerable<TicketDetailsDTO>> GetForUserAsync(ObjectId userId)
         {
             var user = await _userRepository.GetOrFailAsync(userId);
             var movies = await _movieRepository.BrowseAsync();
@@ -31,7 +32,7 @@ namespace Cinema.Infrastrucure.Services
                 var ticket = _mapper.Map<IEnumerable<TicketDetailsDTO>>(movie.GetTicketsPurchasedByUser(user)).ToList();
                 ticket.ForEach( x=>
                 {
-                    x.MovieId = movie.Idd;
+                    x.MovieId = movie._id;
                     x.MovieTitle = movie.Title;
                 });
                 tickets.AddRange(ticket);
@@ -39,14 +40,14 @@ namespace Cinema.Infrastrucure.Services
             return tickets;
         }
 
-        public async Task<TicketDTO> GetAsync(Guid userId, Guid movieId, Guid ticketId)
+        public async Task<TicketDTO> GetAsync(ObjectId userId, ObjectId movieId, ObjectId ticketId)
         {
             var user = await _userRepository.GetOrFailAsync(userId);
             var ticket = await  _movieRepository.GetTicketOrFailAsync(movieId,ticketId);
             return _mapper.Map<TicketDTO>(ticket);
         }
 
-        public async Task PurchaseAsync(Guid userId, Guid movieId, int amount)
+        public async Task PurchaseAsync(ObjectId userId, ObjectId movieId, int amount)
         {
             var user = await _userRepository.GetOrFailAsync(userId);
             var movie = await _movieRepository.GetOrFailAsync(movieId);
@@ -54,7 +55,7 @@ namespace Cinema.Infrastrucure.Services
             await _movieRepository.UpdateAsync(movie);
         }
 
-        public async Task CancelAsync(Guid userId, Guid movieId, int amount)
+        public async Task CancelAsync(ObjectId userId, ObjectId movieId, int amount)
         {
             var user = await _userRepository.GetOrFailAsync(userId);
             var movie = await _movieRepository.GetOrFailAsync(movieId);

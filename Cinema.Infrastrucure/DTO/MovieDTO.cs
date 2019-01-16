@@ -1,10 +1,11 @@
 using System;
+using MongoDB.Bson;
 
 namespace Cinema.Infrastrucure.DTO
 {
     public class MovieDTO
     {
-        public Guid Id { get; set; }
+        public ObjectId _id { get; set; }
         public string Title { get; set; } 
         public string Description { get; set; } 
         public string Type { get; set; } 

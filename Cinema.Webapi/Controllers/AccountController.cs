@@ -4,10 +4,11 @@ using Cinema.Infrastrucure.Commands.Users;
 using Cinema.Infrastrucure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 
 namespace Cinema.Webapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class AccountController : ApiControllerBase
     {
         private readonly IUserService _userService;
@@ -24,15 +25,15 @@ namespace Cinema.Webapi.Controllers
         public async Task<IActionResult> Get()
             => Json(await _userService.GetAccountAsync(UserId));
         
-        [HttpGet("tickets")]
-        [Authorize]
-        public async Task<IActionResult> GetTickets()
-            => Json(await _ticketService.GetForUserAsync(UserId));
+        // [HttpGet("tickets")]
+        // [Authorize]
+        // public async Task<IActionResult> GetTickets()
+        //     => Json(await _ticketService.GetForUserAsync(UserId));
 
         [HttpPost("register")]
         public async Task<IActionResult> Post([FromBody] Register command)
         {
-            await _userService.RegisterAsync(Guid.NewGuid(), command.Email, command.Username,command.Password,command.Role);
+            await _userService.RegisterAsync(new ObjectId(), command.Email, command.Username,command.Password,command.Role);
             return Created("/account",null);
         }
 

@@ -9,9 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using MongoDB.Bson;
 
+
 namespace Cinema.Webapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class MoviesController : ApiControllerBase
     {
         private readonly IMovieService _movieService;
@@ -23,20 +24,9 @@ namespace Cinema.Webapi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(string title)
+        public async Task<IActionResult> Get()
         {
-            var movies = _cache.Get<IEnumerable<MovieDTO>>("movies");
-            if(movies == null)
-            {
-                Console.WriteLine("Fetching from service.");
-                movies = await _movieService.BrowseAsync(title);
-                _cache.Set("movies", movies, TimeSpan.FromMinutes(1));
-            }
-            else
-            {
-                Console.WriteLine("Fetching from cache.");
-            }
-
+            var movies = await _movieService.BrowseAsync();
             return Json(movies);
         }
 
@@ -52,23 +42,23 @@ namespace Cinema.Webapi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateMovie command)
         {
-            command.MovieId = Guid.NewGuid();
+            command.MovieId = ObjectId.GenerateNewId();
             await _movieService.CreateAsync(command.MovieId, command.Title, command.Description, command.Type, command.Director, command.Producer, command.DateTime);
             await _movieService.AddTicketsAsync(command.MovieId, command.Tickets, command.Price);
             return Created($"/movies/{command.MovieId}", null);
         }
 
         [HttpPut("{movieId}")]
-        [Authorize(Policy = "HasAdminRole")]
-        public async Task<IActionResult> Put(Guid movieId, [FromBody]UpdateMovie command)
+        [Authorize]
+        public async Task<IActionResult> Put(ObjectId movieId, [FromBody]UpdateMovie command)
         {
             await _movieService.UpdateAsync(movieId, command.Title,command.Description);
             return NoContent();
         }
 
         [HttpDelete("{movieId}")]
-        [Authorize(Policy = "HasAdminRole")]
-        public async Task<IActionResult> Delete(Guid movieId)
+        [Authorize]
+        public async Task<IActionResult> Delete(ObjectId movieId)
         {
             await _movieService.DeleteAsync(movieId);
             return NoContent();

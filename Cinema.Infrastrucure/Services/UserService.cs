@@ -5,6 +5,7 @@ using Cinema.Infrastrucure.DTO;
 using Cinema.Infrastrucure.Repositories;
 using Cinema.Infrastrucure.Settings;
 using Cinema.Model.Domain;
+using MongoDB.Bson;
 
 namespace Cinema.Infrastrucure.Services
 {
@@ -20,7 +21,7 @@ namespace Cinema.Infrastrucure.Services
             _jwtHandler = jwtHandler;
             _mapper = mapper;
         }
-        public async Task<AccountDTO> GetAccountAsync(Guid userId)
+        public async Task<AccountDTO> GetAccountAsync(ObjectId userId)
         {
             var user = await _userRepository.GetAsync(userId);
             return _mapper.Map<AccountDTO>(user);
@@ -35,7 +36,7 @@ namespace Cinema.Infrastrucure.Services
             if(user.Password != password){
                 throw new Exception("Invalid credentials.");
             }
-            var jwt = _jwtHandler.CreateToken(user.Idd, user.Role);
+            var jwt = _jwtHandler.CreateToken(user._id, user.Role);
 
             return new TokenDTO
             {
@@ -45,7 +46,7 @@ namespace Cinema.Infrastrucure.Services
             };
         }
 
-        public async Task RegisterAsync(Guid userId, string email, string username, string password, string role = "user")
+        public async Task RegisterAsync(ObjectId userId, string email, string username, string password, string role = "user")
         {
             var user = await _userRepository.GetAsync(email);
             if(user != null)

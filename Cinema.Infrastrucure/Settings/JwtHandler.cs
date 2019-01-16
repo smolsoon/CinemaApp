@@ -7,6 +7,7 @@ using Cinema.Infrastrucure.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using MongoDB.Bson;
 
 namespace Cinema.Infrastrucure.Settings
 {
@@ -17,7 +18,7 @@ namespace Cinema.Infrastrucure.Settings
         {
             _jwtSettings  = jwtSettings.Value;
         }
-        public JwtDTO CreateToken(Guid userId, string role)
+        public JwtDTO CreateToken(ObjectId userId, string role)
         {
             var now = DateTime.UtcNow;
             var claims = new Claim[]
@@ -25,7 +26,7 @@ namespace Cinema.Infrastrucure.Settings
                 new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
                 new Claim(JwtRegisteredClaimNames.UniqueName, userId.ToString()),
                 new Claim(ClaimTypes.Role, role),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti, new ObjectId().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString()),
             };
 

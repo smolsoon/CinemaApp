@@ -1,17 +1,19 @@
 using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace Cinema.Model.Domain
 {
-    public class Entity
+    public abstract class Entity
     {
         [BsonId]
-        public ObjectId Id { get; protected set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId _id { get; protected set; }
 
         protected Entity()
         {
-            Id = new ObjectId();
+            _id = ObjectId.GenerateNewId();
         }
     }
 }

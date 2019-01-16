@@ -5,6 +5,7 @@ using Cinema.Infrastrucure.Database;
 using Cinema.Infrastrucure.Settings;
 using Cinema.Model.Domain;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
@@ -19,26 +20,12 @@ namespace Cinema.Infrastrucure.Repositories
             _database = new MovieContext(settings);
         }
 
-        public async Task<Movie> GetAsync(Guid id)
-            => await _database.Movies.AsQueryable().FirstOrDefaultAsync(x => x.Idd == id);
+        public async Task<Movie> GetAsync(ObjectId id)
+            => await _database.Movies.AsQueryable().FirstOrDefaultAsync(x => x._id == id);
 
-        public async Task<Movie> GetAsync(string title)
-            => await _database.Movies.AsQueryable().FirstOrDefaultAsync(x => x.Title.ToLowerInvariant() == title.ToLowerInvariant());
-        
         public async Task<IEnumerable<Movie>> BrowseAsync()
         {
             var movies = _database.Movies.AsQueryable();
-            return await Task.FromResult(movies);
-        }      
-
-        public async Task<IEnumerable<Movie>> BrowseAsync(string title = "")
-        {
-            var movies = _database.Movies.AsQueryable();
-            if(!string.IsNullOrWhiteSpace(title))
-            {
-                movies = movies.Where(x => x.Title.ToLowerInvariant().Contains(title.ToLowerInvariant()));
-            }
-
             return await Task.FromResult(movies);
         }      
 
@@ -46,9 +33,9 @@ namespace Cinema.Infrastrucure.Repositories
             => await _database.Movies.InsertOneAsync(movie);
         
         public async Task UpdateAsync(Movie movie)
-            => await _database.Movies.ReplaceOneAsync(x => x.Idd == movie.Idd, movie);
+            => await _database.Movies.ReplaceOneAsync(x => x._id == movie._id, movie);
         
         public async Task DeleteAsync(Movie movie)
-            => await _database.Movies.DeleteOneAsync(x => x.Idd == movie.Idd);
+            => await _database.Movies.DeleteOneAsync(x => x._id == movie._id);
     }
 }

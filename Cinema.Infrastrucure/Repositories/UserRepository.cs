@@ -7,6 +7,7 @@ using MongoDB.Driver.Linq;
 using System.Collections.Generic;
 using Microsoft.Extensions.Options;
 using Cinema.Infrastrucure.Settings;
+using MongoDB.Bson;
 
 namespace Cinema.Infrastrucure.Repositories
 {
@@ -18,8 +19,8 @@ namespace Cinema.Infrastrucure.Repositories
             _database = new AuthContext(settings);
         }
         
-        public async Task<User> GetAsync(Guid id)
-            => await _database.Users.AsQueryable().FirstOrDefaultAsync(x => x.Idd == id);
+        public async Task<User> GetAsync(ObjectId id)
+            => await _database.Users.AsQueryable().FirstOrDefaultAsync(x => x._id == id);
 
         public async Task<User> GetAsync(string email)
             => await _database.Users.AsQueryable().FirstOrDefaultAsync(x => x.Email == email);
@@ -28,9 +29,9 @@ namespace Cinema.Infrastrucure.Repositories
             => await _database.Users.InsertOneAsync(user);
 
         public async Task DeleteAsync(User user)
-            => await _database.Users.DeleteOneAsync(x => x.Idd == user.Idd);
+            => await _database.Users.DeleteOneAsync(x => x._id == user._id);
 
         public async Task UpdateAsync(User user)
-            => await _database.Users.ReplaceOneAsync(x => x.Idd == user.Idd, user);
+            => await _database.Users.ReplaceOneAsync(x => x._id == user._id, user);
     }
 }

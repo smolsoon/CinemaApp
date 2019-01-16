@@ -1,10 +1,11 @@
 using System;
+using MongoDB.Bson;
 
 namespace Cinema.Infrastrucure.Commands.Movies
 {
     public class CreateMovie
     {
-        public Guid MovieId { get; set; }
+        public ObjectId MovieId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }

@@ -6,6 +6,7 @@ using Cinema.Infrastrucure.DTO;
 using Cinema.Infrastrucure.Extensions;
 using Cinema.Infrastrucure.Repositories;
 using Cinema.Model.Domain;
+using MongoDB.Bson;
 
 namespace Cinema.Infrastrucure.Services
 {
@@ -20,45 +21,39 @@ namespace Cinema.Infrastrucure.Services
             _mapper = mapper;
         }
 
-        public async Task<MovieDetailsDTO> GetAsync(Guid id)
+        public async Task<MovieDetailsDTO> GetAsync(ObjectId id)
         {
             var movie = await _movieRepository.GetAsync(id);
             return _mapper.Map<MovieDetailsDTO>(movie);
         }
 
-        public async Task<MovieDetailsDTO> GetAsync(string title)
+        public async Task<IEnumerable<MovieDTO>> BrowseAsync()
         {
-            var movie = await _movieRepository.GetAsync(title);
-            return _mapper.Map<MovieDetailsDTO>(movie);
-        }
-
-        public async Task<IEnumerable<MovieDTO>> BrowseAsync(string title = null)
-        {
-            var movies = await _movieRepository.BrowseAsync(title);
+            var movies = await _movieRepository.BrowseAsync();
             return _mapper.Map<IEnumerable<MovieDTO>>(movies);
         }
 
-        public async Task AddTicketsAsync(Guid movieId, int amount, decimal price)
+        public async Task AddTicketsAsync(ObjectId movieId, int amount, decimal price)
         {
             var movie = await _movieRepository.GetOrFailAsync(movieId);
             movie.AddTickets(amount, price);
             await _movieRepository.UpdateAsync(movie);
         }
 
-        public async Task CreateAsync(Guid id, string title, string description, string type, string director, string producer, DateTime dateTime)
+        public async Task CreateAsync(ObjectId id, string title, string description, string type, string director, string producer, DateTime dateTime)
         {
-            var movie = await _movieRepository.GetAsync(title);
+            var movie = await _movieRepository.GetAsync(id);
             if(movie != null)
             {
                 throw new Exception($"Movie titled: '{title}' already exists.");
             }
-            movie = new Movie(id, title, description,type,director,producer, dateTime);
+            movie = new Movie(id , title, description,type,director,producer, dateTime);
             await _movieRepository.AddAsync(movie);
         }
 
-        public async Task UpdateAsync(Guid id, string title, string description)
+        public async Task UpdateAsync(ObjectId id, string title, string description)
         {
-            var movie = await _movieRepository.GetAsync(title);
+            var movie = await _movieRepository.GetAsync(id);
             if(movie != null)
             {
                 throw new Exception($"Movie titled: '{title}' already exists.");
@@ -68,7 +63,7 @@ namespace Cinema.Infrastrucure.Services
             await _movieRepository.UpdateAsync(movie);          
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(ObjectId id)
         {
             var movie = await _movieRepository.GetOrFailAsync(id);
             await _movieRepository.DeleteAsync(movie);

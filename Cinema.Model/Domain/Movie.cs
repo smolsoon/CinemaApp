@@ -9,28 +9,26 @@ namespace Cinema.Model.Domain
 {
     public class Movie : Entity
     {
-        [BsonId]
-        public ObjectId Id { get; set;}
         public string Title { get; protected set; } 
         public string Description { get; protected set; } 
         public string Type { get; protected set; } 
         public string Director { get; protected set; } 
         public string Producer { get; protected set; }
-        public DateTime DateTime { get; protected set; }
+        public DateTime Time { get; protected set; }
         private ISet<Ticket> _tickets { get; set; }
         public IEnumerable<Ticket> Tickets => _tickets;
         public IEnumerable<Ticket> PurchasedTickets => Tickets.Where(x => x.Purchased);
         public IEnumerable<Ticket> AvailableTickets => Tickets.Except(PurchasedTickets);
         
-        public Movie(Guid id, string title, string description, string type, string director, string producer, DateTime dateTime)
+        public Movie(ObjectId id, string title, string description, string type, string director, string producer, DateTime dateTime)
         {
-            Idd = id;
+            _id = id;
             Title = title;
             Description = description;
             Type = type;
             Director = director;
             Producer = producer;
-            DateTime = dateTime;
+            Time = dateTime;
         }
 
         public void AddTickets(int amount, decimal price)
@@ -71,7 +69,7 @@ namespace Cinema.Model.Domain
         }
 
         public IEnumerable<Ticket> GetTicketsPurchasedByUser(User user)
-            => PurchasedTickets.Where(x => x.UserId == user.Idd);
+            => PurchasedTickets.Where(x => x.UserId == user._id);
         
       }
 }
