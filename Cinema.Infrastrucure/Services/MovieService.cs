@@ -27,10 +27,10 @@ namespace Cinema.Infrastrucure.Services
             return _mapper.Map<MovieDetailsDTO>(movie);
         }
 
-        public async Task<ICollection<MovieDTO>> BrowseAsync()
+        public async Task<IEnumerable<MovieDTO>> BrowseAsync()
         {
             var movies = await _movieRepository.BrowseAsync();
-            return _mapper.Map<ICollection<MovieDTO>>(movies);
+            return _mapper.Map<IEnumerable<MovieDTO>>(movies);
         }
 
         public async Task AddTicketsAsync(string movieId, int amount, decimal price)

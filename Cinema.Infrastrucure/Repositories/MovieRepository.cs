@@ -34,6 +34,7 @@ namespace Cinema.Infrastrucure.Repositories
         }
         public async Task<IEnumerable<Movie>> BrowseAsync()
         {
+            // var tickets =  _database.Movies.AsQueryable().Select()
             return await _database.Movies.Find(_ => true).ToListAsync();
         }
         public async Task AddAsync(Movie movie)
