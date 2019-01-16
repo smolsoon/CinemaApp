@@ -4,9 +4,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Cinema.Model.Domain
 {
-    public class Ticket : Entity
+    public class Ticket 
     {
-        public ObjectId MovieId { get; protected set; }
+        public string Id { get; protected set;}
+        public string MovieId { get; protected set; }
         public int Seating { get; protected set; }
         public decimal Price { get; protected set; }
         public ObjectId? UserId { get; protected set; }
@@ -18,9 +19,10 @@ namespace Cinema.Model.Domain
         {
         }
 
-        public Ticket(Movie movie, int seating, decimal price)
+        public Ticket(Movie movie,string id, int seating, decimal price)
         {
             MovieId = movie._id;
+            Id = id;
             Seating = seating;
             Price = price;
         }

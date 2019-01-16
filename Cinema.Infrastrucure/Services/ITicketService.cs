@@ -8,9 +8,9 @@ namespace Cinema.Infrastrucure.Services
 {
     public interface ITicketService
     {
-        Task<IEnumerable<TicketDetailsDTO>> GetForUserAsync(ObjectId userId);
-        Task<TicketDTO> GetAsync(ObjectId userId, ObjectId movieId, ObjectId ticketId);
-        Task PurchaseAsync(ObjectId userId, ObjectId movieId, int amount);
-        Task CancelAsync(ObjectId userId, ObjectId movieId, int amount);
+        Task<IEnumerable<TicketDTO>> GetForUserAsync(ObjectId userId);
+        Task<TicketDetailsDTO> GetAsync(ObjectId userId, string movieId, string ticketId);
+        Task PurchaseAsync(ObjectId userId, string movieId, int amount);
+        Task CancelAsync(ObjectId userId, string movieId, int amount);
     }
 }

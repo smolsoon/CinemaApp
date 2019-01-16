@@ -43,7 +43,6 @@ namespace Cinema.Webapi
             
             services.AddCors();
             services.AddAuthorization();
-            services.AddMemoryCache();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IMovieRepository, MovieRepository>();

@@ -1,7 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Cinema.Infrastrucure.Database;
+using Cinema.Infrastrucure.DTO;
 using Cinema.Infrastrucure.Settings;
 using Cinema.Model.Domain;
 using Microsoft.Extensions.Options;
@@ -15,20 +20,22 @@ namespace Cinema.Infrastrucure.Repositories
     public class MovieRepository : IMovieRepository
     {
         private readonly MovieContext _database = null;
-        public MovieRepository(IOptions<DatabaseSettings> settings)
+        private readonly IMapper _mapper;
+        public MovieRepository(IOptions<DatabaseSettings> settings, IMapper mapper)
         {
             _database = new MovieContext(settings);
+            _mapper = mapper;
         }
 
-        public async Task<Movie> GetAsync(ObjectId id)
-            => await _database.Movies.AsQueryable().FirstOrDefaultAsync(x => x._id == id);
-
+        public async Task <Movie> GetAsync(string id)
+        {
+            var filter = Builders<Movie>.Filter.Eq("_id", id);
+            return await _database.Movies.Find(filter).FirstOrDefaultAsync();
+        }
         public async Task<IEnumerable<Movie>> BrowseAsync()
         {
-            var movies = _database.Movies.AsQueryable();
-            return await Task.FromResult(movies);
-        }      
-
+            return await _database.Movies.Find(_ => true).ToListAsync();
+        }
         public async Task AddAsync(Movie movie)
             => await _database.Movies.InsertOneAsync(movie);
         

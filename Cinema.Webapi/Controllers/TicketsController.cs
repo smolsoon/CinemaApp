@@ -19,7 +19,7 @@ namespace Cinema.Webapi.Controllers
         }
 
         [HttpGet("{ticketId}")]
-        public async Task<IActionResult> Get(ObjectId movieId, ObjectId ticketId)
+        public async Task<IActionResult> Get(string movieId, string ticketId)
         {
             var ticket = await _ticketService.GetAsync(UserId, movieId, ticketId);
             if(ticket == null)
@@ -28,14 +28,14 @@ namespace Cinema.Webapi.Controllers
         }
 
         [HttpPost("purchase/{amount}")]
-        public async Task<IActionResult> Post(ObjectId movieId, int amount)
+        public async Task<IActionResult> Post(string movieId, int amount)
         {
             await _ticketService.PurchaseAsync(UserId, movieId, amount);
             return NoContent();
         }
 
         [HttpDelete("cancel/{amount}")]
-        public async Task<IActionResult> Delete(ObjectId movieId, int amount)
+        public async Task<IActionResult> Delete(string movieId, int amount)
         {
             await _ticketService.CancelAsync(UserId, movieId, amount);
             return NoContent();

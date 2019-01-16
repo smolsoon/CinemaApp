@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Cinema.Infrastrucure.DTO;
@@ -21,6 +22,7 @@ namespace Cinema.Infrastrucure.Services
             _jwtHandler = jwtHandler;
             _mapper = mapper;
         }
+
         public async Task<AccountDTO> GetAccountAsync(ObjectId userId)
         {
             var user = await _userRepository.GetAsync(userId);
@@ -55,5 +57,7 @@ namespace Cinema.Infrastrucure.Services
             user = new User(userId, role, username, email, password);
             await _userRepository.AddAsync(user);
         }
+
+        
     }
 }

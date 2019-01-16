@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Cinema.Infrastrucure.DTO;
 using Cinema.Infrastrucure.Settings;
 using Cinema.Model.Domain;
 using Microsoft.Extensions.Options;
