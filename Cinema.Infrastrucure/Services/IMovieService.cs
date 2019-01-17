@@ -8,11 +8,11 @@ namespace Cinema.Infrastrucure.Services
 {
     public interface IMovieService
     {
-        Task<MovieDetailsDTO> GetAsync(string id);
+        Task<MovieDetailsDTO> GetAsync(Guid id);
         Task<IEnumerable<MovieDTO>> BrowseAsync();
-        Task CreateAsync(string id, string title, string description, string type, string director, string producer, DateTime dateTime);
-        Task AddTicketsAsync(string movieId, int amount, decimal price);
-        Task UpdateAsync(string id, string title, string description);  
-        Task DeleteAsync(string id);
+        Task CreateAsync(Guid id, string title, string description, string type, string director, string producer, DateTime dateTime);
+        Task AddTicketsAsync(Guid movieId, int amount, decimal price);
+        Task UpdateAsync(Guid id, string title, string description);  
+        Task DeleteAsync(Guid id);
     }
 }

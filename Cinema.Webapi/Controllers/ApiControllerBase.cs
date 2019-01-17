@@ -7,8 +7,8 @@ namespace Cinema.Webapi.Controllers
     [Route("[controller]")]
     public class ApiControllerBase : Controller
     {
-        protected ObjectId UserId => User?.Identity?.IsAuthenticated == true ?
-            ObjectId.Parse(User.Identity.Name) : 
-            ObjectId.Empty;
+        protected Guid UserId => User?.Identity?.IsAuthenticated == true ?
+            Guid.Parse(User.Identity.Name) : 
+            Guid.Empty;
     }
 }

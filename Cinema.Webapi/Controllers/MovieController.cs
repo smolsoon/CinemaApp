@@ -30,7 +30,7 @@ namespace Cinema.Webapi.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMovie(string id)
+        public async Task<IActionResult> GetMovie(Guid id)
         {
            return Json(await _movieService.GetAsync(id));
         }
@@ -39,15 +39,15 @@ namespace Cinema.Webapi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateMovie command)
         {
-            command.MovieId = ObjectId.GenerateNewId();
-            await _movieService.CreateAsync(command.MovieId.ToString(), command.Title, command.Description, command.Type, command.Director, command.Producer, command.DateTime);
-            await _movieService.AddTicketsAsync(command.MovieId.ToString(), command.Tickets, command.Price);
+            command.MovieId = Guid.NewGuid();
+            await _movieService.CreateAsync(command.MovieId, command.Title, command.Description, command.Type, command.Director, command.Producer, command.DateTime);
+            await _movieService.AddTicketsAsync(command.MovieId, command.Tickets, command.Price);
             return Created($"/movies/{command.MovieId}", null);
         }
 
         [HttpPut("{movieId}")]
         [Authorize]
-        public async Task<IActionResult> Put(string movieId, [FromBody]UpdateMovie command)
+        public async Task<IActionResult> Put(Guid movieId, [FromBody]UpdateMovie command)
         {
             await _movieService.UpdateAsync(movieId, command.Title,command.Description);
             return NoContent();
@@ -55,7 +55,7 @@ namespace Cinema.Webapi.Controllers
 
         [HttpDelete("{movieId}")]
         [Authorize]
-        public async Task<IActionResult> Delete(string movieId)
+        public async Task<IActionResult> Delete(Guid movieId)
         {
             await _movieService.DeleteAsync(movieId);
             return NoContent();

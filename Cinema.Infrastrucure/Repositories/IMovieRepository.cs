@@ -9,7 +9,7 @@ namespace Cinema.Infrastrucure.Repositories
 {
     public interface IMovieRepository
     {
-        Task<Movie> GetAsync(string id); 
+        Task<Movie> GetAsync(Guid id); 
         Task<IEnumerable<Movie>> BrowseAsync();
         Task AddAsync(Movie movie);
         Task UpdateAsync(Movie movie);

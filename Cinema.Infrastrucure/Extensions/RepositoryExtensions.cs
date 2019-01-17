@@ -9,7 +9,7 @@ namespace Cinema.Infrastrucure.Extensions
 {
     public static class RepositoryExtensions
     {
-        public static async Task<Movie> GetOrFailAsync(this IMovieRepository repository, string id)
+        public static async Task<Movie> GetOrFailAsync(this IMovieRepository repository, Guid id)
         {
             var movie = await repository.GetAsync(id);
             if(movie == null)
@@ -20,7 +20,7 @@ namespace Cinema.Infrastrucure.Extensions
             return movie;            
         }
 
-        public static async Task<User> GetOrFailAsync(this IUserRepository repository, ObjectId id)
+        public static async Task<User> GetOrFailAsync(this IUserRepository repository, Guid id)
         {
             var user = await repository.GetAsync(id);
             if(user == null)
@@ -31,11 +31,11 @@ namespace Cinema.Infrastrucure.Extensions
             return user;            
         }
 
-        public static async Task<Ticket> GetTicketOrFailAsync(this IMovieRepository repository, string movieId,
-            string ticketId)
+        public static async Task<Ticket> GetTicketOrFailAsync(this IMovieRepository repository, Guid movieId,
+            Guid ticketId)
         {
             var movie = await repository.GetOrFailAsync(movieId);
-            var ticket = movie.Tickets.SingleOrDefault(x => x.Id == ticketId);
+            var ticket = movie.GetTickets().SingleOrDefault(x => x.Id == ticketId);
             if(ticket == null)
             {
                 throw new Exception($"Ticket with id: '{ticketId}' was not found for event: '{movie.Title}'");

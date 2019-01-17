@@ -9,20 +9,23 @@ namespace Cinema.Model.Domain
 {
     public class Movie 
     {
-        private List<Ticket> _tickets { get; set; }
+        private ISet<Ticket> _tickets { get; set; }
         [BsonId]
-        public string _id { get; protected set; }
+        public Guid _id { get; protected set; }
         public string Title { get; protected set; } 
         public string Description { get; protected set; } 
         public string Type { get; protected set; } 
         public string Director { get; protected set; } 
         public string Producer { get; protected set; }
         public DateTime DateTime { get; protected set; }
-        public IEnumerable<Ticket> Tickets => _tickets;
-        public IEnumerable<Ticket> PurchasedTickets => Tickets.Where(x => x.Purchased);
-        public IEnumerable<Ticket> AvailableTickets => Tickets.Except(PurchasedTickets);
+        private IEnumerable<Ticket> Tickets { get; set;}
+        private IEnumerable<Ticket> PurchasedTickets { get; set;}
+        private IEnumerable<Ticket> AvailableTickets { get; set;}
+        public IEnumerable<Ticket> GetTickets() => _tickets;
+        public IEnumerable<Ticket> GetPurchasedTickets() => Tickets.Where(x => x.Purchased);
+        public IEnumerable<Ticket> GetAvailableTickets() => Tickets.Except(PurchasedTickets);
         
-        public Movie(string id, string title, string description, string type, string director, string producer, DateTime dateTime)
+        public Movie(Guid id, string title, string description, string type, string director, string producer, DateTime dateTime)
         {
             _id = id;
             Title = title;
@@ -35,12 +38,11 @@ namespace Cinema.Model.Domain
 
         public void AddTickets(int amount, decimal price)
         {
-            _tickets = new List<Ticket>();
+            _tickets = new HashSet<Ticket>();
             var seating = _tickets.Count + 1;
             for(var i=0; i<amount; i++)
             {
-                var id = ObjectId.GenerateNewId().ToString();
-                _tickets.Add(new Ticket(this, id, seating, price));
+                _tickets.Add(new Ticket(this, seating, price));
                 seating++;
             }
         }

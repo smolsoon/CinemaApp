@@ -34,7 +34,7 @@ namespace Cinema.Webapi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Post([FromBody] Register command)
         {
-            await _userService.RegisterAsync(new ObjectId(), command.Email, command.Username,command.Password,command.Role);
+            await _userService.RegisterAsync(Guid.NewGuid(), command.Email, command.Username,command.Password,command.Role);
             return Created("/account",null);
         }
 

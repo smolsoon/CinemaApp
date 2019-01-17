@@ -19,7 +19,7 @@ namespace Cinema.Infrastrucure.Repositories
             _database = new AuthContext(settings);
         }
         
-        public async Task<User> GetAsync(ObjectId id)
+        public async Task<User> GetAsync(Guid id)
             => await _database.Users.AsQueryable().FirstOrDefaultAsync(x => x._id == id);
 
         public async Task<User> GetAsync(string email)

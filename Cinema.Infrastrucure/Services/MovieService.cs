@@ -21,7 +21,7 @@ namespace Cinema.Infrastrucure.Services
             _mapper = mapper;
         }
 
-        public async Task<MovieDetailsDTO> GetAsync(string id)
+        public async Task<MovieDetailsDTO> GetAsync(Guid id)
         {
             var movie = await _movieRepository.GetAsync(id);
             return _mapper.Map<MovieDetailsDTO>(movie);
@@ -33,14 +33,14 @@ namespace Cinema.Infrastrucure.Services
             return _mapper.Map<IEnumerable<MovieDTO>>(movies);
         }
 
-        public async Task AddTicketsAsync(string movieId, int amount, decimal price)
+        public async Task AddTicketsAsync(Guid movieId, int amount, decimal price)
         {
             var movie = await _movieRepository.GetOrFailAsync(movieId);
             movie.AddTickets(amount, price);
             await _movieRepository.UpdateAsync(movie);
         }
 
-        public async Task CreateAsync(string id, string title, string description, string type, string director, string producer, DateTime dateTime)
+        public async Task CreateAsync(Guid id, string title, string description, string type, string director, string producer, DateTime dateTime)
         {
             var movie = await _movieRepository.GetAsync(id);
             if(movie != null)
@@ -51,7 +51,7 @@ namespace Cinema.Infrastrucure.Services
             await _movieRepository.AddAsync(movie);
         }
 
-        public async Task UpdateAsync(string id, string title, string description)
+        public async Task UpdateAsync(Guid id, string title, string description)
         {
             var movie = await _movieRepository.GetAsync(id);
             if(movie != null)
@@ -63,15 +63,10 @@ namespace Cinema.Infrastrucure.Services
             await _movieRepository.UpdateAsync(movie);          
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(Guid id)
         {
             var movie = await _movieRepository.GetOrFailAsync(id);
             await _movieRepository.DeleteAsync(movie);
-        }
-
-        public Task DeleteAsync(ObjectId id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

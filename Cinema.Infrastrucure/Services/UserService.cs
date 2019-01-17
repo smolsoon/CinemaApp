@@ -23,7 +23,7 @@ namespace Cinema.Infrastrucure.Services
             _mapper = mapper;
         }
 
-        public async Task<AccountDTO> GetAccountAsync(ObjectId userId)
+        public async Task<AccountDTO> GetAccountAsync(Guid userId)
         {
             var user = await _userRepository.GetAsync(userId);
             return _mapper.Map<AccountDTO>(user);
@@ -48,7 +48,7 @@ namespace Cinema.Infrastrucure.Services
             };
         }
 
-        public async Task RegisterAsync(ObjectId userId, string email, string username, string password, string role = "user")
+        public async Task RegisterAsync(Guid userId, string email, string username, string password, string role = "user")
         {
             var user = await _userRepository.GetAsync(email);
             if(user != null)

@@ -8,7 +8,6 @@ using Cinema.Infrastrucure.Database;
 using Cinema.Infrastrucure.Repositories;
 using Cinema.Infrastrucure.Services;
 using Cinema.Infrastrucure.Settings;
-using Cinema.Model.ObjectIdConverter;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -51,11 +50,6 @@ namespace Cinema.Webapi
             services.AddSingleton<IJwtHandler,JwtHandler>();
             services.AddSingleton(AutoMapperConfiguration.Initialize());
             services.Configure<JWTSettings>(Configuration.GetSection("jwt"));
-            services.AddMvc().AddJsonOptions(opt => 
-            {
-                opt.SerializerSettings.Converters.Add(new ObjectIdConverter());
-            });
-            //services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.Configure<DatabaseSettings>(options =>
             {
                 options.ConnectionString= Configuration.GetSection("MongoDb:ConnectionString").Value; 

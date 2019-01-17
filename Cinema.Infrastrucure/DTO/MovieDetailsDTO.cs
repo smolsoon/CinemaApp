@@ -6,7 +6,7 @@ namespace Cinema.Infrastrucure.DTO
 {
     public class MovieDetailsDTO 
     {
-        public string _id { get; set; }
+        public Guid _id { get; set; }
         public string Title { get; set; } 
         public string Description { get; set; } 
         public string Type { get; set; } 
@@ -16,6 +16,6 @@ namespace Cinema.Infrastrucure.DTO
         public int TicketsCount { get; set; }
         public int PurchasedTicketsCount { get; set; }
         public int AvailableTicketsCount { get; set; }
-        public IEnumerable<TicketDTO> Tickets { get; set;}
+        public IEnumerable<TicketDetailsDTO> Tickets { get; set;}
     }
 }

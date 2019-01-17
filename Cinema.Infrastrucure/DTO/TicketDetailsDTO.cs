@@ -5,8 +5,7 @@ namespace Cinema.Infrastrucure.DTO
 {
     public class TicketDetailsDTO
     {
-        public string Id { get; set;} 
-        public string MovieId { get; set; }
+        public Guid Id { get; set;} 
         public int Seating { get; set; }
         public decimal Price { get; set; }
         public ObjectId? UserId { get; set; }

@@ -6,11 +6,12 @@ namespace Cinema.Model.Domain
 {
     public class Ticket 
     {
-        public string Id { get; protected set;}
-        public string MovieId { get; protected set; }
+        [BsonId]
+        public Guid Id { get; protected set; }
+        public Guid MovieId { get; protected set; }
         public int Seating { get; protected set; }
         public decimal Price { get; protected set; }
-        public ObjectId? UserId { get; protected set; }
+        public Guid? UserId { get; protected set; }
         public string Username { get; protected set; }
         public DateTime? PurchasedAt { get; protected set; }
         public bool Purchased => UserId.HasValue;
@@ -19,10 +20,9 @@ namespace Cinema.Model.Domain
         {
         }
 
-        public Ticket(Movie movie,string id, int seating, decimal price)
+        public Ticket(Movie movie, int seating, decimal price)
         {
             MovieId = movie._id;
-            Id = id;
             Seating = seating;
             Price = price;
         }
