@@ -16,6 +16,6 @@ namespace Cinema.Infrastrucure.DTO
         public int TicketsCount { get; set; }
         public int PurchasedTicketsCount { get; set; }
         public int AvailableTicketsCount { get; set; }
-        public IEnumerable<TicketDetailsDTO> Tickets { get; set;}
+        public IEnumerable<TicketMovieDTO> Tickets { get; set;}
     }
 }

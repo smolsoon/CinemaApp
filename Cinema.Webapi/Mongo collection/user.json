@@ -1,0 +1,24 @@
+{
+    "_id" : "248516a4-71a3-f242-b2f9-45ecfafffe1a",
+    "Username" : "smolsoon",
+    "Role" : "admin",
+    "Email" : "smolsosson@outlook.com",
+    "Password" : "haslo",
+    "PurchasedTickets" :
+        [
+            {
+                "id": "",
+                "Title" : "Harry",
+                "Seating" : 1,
+                "Price" : 20,
+                "Username" : "smollson"
+            },
+            {
+                "id": "",
+                "Title" : "Harry",
+                "Seating" : 2,
+                "Price" : 20,
+                "Username" : "smollson"
+            }
+        ]
+}

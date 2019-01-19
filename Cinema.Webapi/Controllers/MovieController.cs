@@ -41,12 +41,12 @@ namespace Cinema.Webapi.Controllers
         {
             command.MovieId = Guid.NewGuid();
             await _movieService.CreateAsync(command.MovieId, command.Title, command.Description, command.Type, command.Director, command.Producer, command.DateTime);
-            await _movieService.AddTicketsAsync(command.MovieId, command.Tickets, command.Price);
+            //await _movieService.AddTicketsAsync(command.MovieId, command.Tickets, command.Price);
             return Created($"/movies/{command.MovieId}", null);
         }
 
         [HttpPut("{movieId}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> Put(Guid movieId, [FromBody]UpdateMovie command)
         {
             await _movieService.UpdateAsync(movieId, command.Title,command.Description);
@@ -54,7 +54,7 @@ namespace Cinema.Webapi.Controllers
         }
 
         [HttpDelete("{movieId}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> Delete(Guid movieId)
         {
             await _movieService.DeleteAsync(movieId);

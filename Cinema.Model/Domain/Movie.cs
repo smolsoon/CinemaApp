@@ -9,7 +9,7 @@ namespace Cinema.Model.Domain
 {
     public class Movie 
     {
-        private ISet<Ticket> _tickets { get; set; }
+        //private ISet<Ticket> _tickets { get; set; }
         [BsonId]
         public Guid _id { get; protected set; }
         public string Title { get; protected set; } 
@@ -19,11 +19,6 @@ namespace Cinema.Model.Domain
         public string Producer { get; protected set; }
         public DateTime DateTime { get; protected set; }
         private IEnumerable<Ticket> Tickets { get; set;}
-        private IEnumerable<Ticket> PurchasedTickets { get; set;}
-        private IEnumerable<Ticket> AvailableTickets { get; set;}
-        public IEnumerable<Ticket> GetTickets() => _tickets;
-        public IEnumerable<Ticket> GetPurchasedTickets() => Tickets.Where(x => x.Purchased);
-        public IEnumerable<Ticket> GetAvailableTickets() => Tickets.Except(PurchasedTickets);
         
         public Movie(Guid id, string title, string description, string type, string director, string producer, DateTime dateTime)
         {
@@ -36,45 +31,45 @@ namespace Cinema.Model.Domain
             DateTime = dateTime;
         }
 
-        public void AddTickets(int amount, decimal price)
-        {
-            _tickets = new HashSet<Ticket>();
-            var seating = _tickets.Count + 1;
-            for(var i=0; i<amount; i++)
-            {
-                _tickets.Add(new Ticket(this, seating, price));
-                seating++;
-            }
-        }
+        // public void AddTickets(int amount, decimal price)
+        // {
+        //     _tickets = new HashSet<Ticket>();
+        //     var seating = _tickets.Count + 1;
+        //     for(var i=0; i<amount; i++)
+        //     {
+        //         _tickets.Add(new Ticket(this, seating, price));
+        //         seating++;
+        //     }
+        // }
 
-        public void PurchaseTickets(User user, int amount)
-        {
-            if(AvailableTickets.Count() < amount)
-            {
-                throw new Exception($"Not enough available tickets to purchase ({amount}) by user: '{user.Username}'.");
-            }
-            var tickets = AvailableTickets.Take(amount);
-            foreach(var ticket in tickets)
-            {
-                ticket.Purchase(user);
-            }
-        }
+        // public void PurchaseTickets(User user, int amount)
+        // {
+        //     if(AvailableTickets.Count() < amount)
+        //     {
+        //         throw new Exception($"Not enough available tickets to purchase ({amount}) by user: '{user.Username}'.");
+        //     }
+        //     var tickets = AvailableTickets.Take(amount);
+        //     foreach(var ticket in tickets)
+        //     {
+        //         ticket.Purchase(user);
+        //     }
+        // }
 
-        public void CancelPurchasedTickets(User user, int amount)
-        {
-            var tickets = GetTicketsPurchasedByUser(user);
-            if(tickets.Count() < amount)
-            {
-                throw new Exception($"Not enough purchased tickets to be canceled ({amount}) by user: '{user.Username}'.");
-            }
-            foreach(var ticket in tickets.Take(amount))
-            {
-                ticket.Cancel();
-            }
-        }
+        // public void CancelPurchasedTickets(User user, int amount)
+        // {
+        //     var tickets = GetTicketsPurchasedByUser(user);
+        //     if(tickets.Count() < amount)
+        //     {
+        //         throw new Exception($"Not enough purchased tickets to be canceled ({amount}) by user: '{user.Username}'.");
+        //     }
+        //     foreach(var ticket in tickets.Take(amount))
+        //     {
+        //         ticket.Cancel();
+        //     }
+        // }
 
-        public IEnumerable<Ticket> GetTicketsPurchasedByUser(User user)
-            => PurchasedTickets.Where(x => x.UserId == user._id);
+        // public IEnumerable<Ticket> GetTicketsPurchasedByUser(User user)
+        //     => PurchasedTickets.Where(x => x.UserId == user._id);
         
       }
 }

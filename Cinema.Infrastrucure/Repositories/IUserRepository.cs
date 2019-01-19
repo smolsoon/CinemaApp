@@ -13,5 +13,9 @@ namespace Cinema.Infrastrucure.Repositories
         Task AddAsync(User user);
         Task UpdateAsync(User user);
         Task DeleteAsync(User user);
+        Task <IEnumerable<Ticket>> GetTickets();
+        Task<Ticket> PurchaseTickets(Ticket ticket);
+        Task<Ticket> CancelTickets (Ticket ticket);
+
     }
 }

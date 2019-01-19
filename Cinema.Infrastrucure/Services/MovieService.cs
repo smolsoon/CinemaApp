@@ -33,12 +33,12 @@ namespace Cinema.Infrastrucure.Services
             return _mapper.Map<IEnumerable<MovieDTO>>(movies);
         }
 
-        public async Task AddTicketsAsync(Guid movieId, int amount, decimal price)
-        {
-            var movie = await _movieRepository.GetOrFailAsync(movieId);
-            movie.AddTickets(amount, price);
-            await _movieRepository.UpdateAsync(movie);
-        }
+        // public async Task AddTicketsAsync(Guid movieId, int amount, decimal price)
+        // {
+        //     var movie = await _movieRepository.GetOrFailAsync(movieId);
+        //     movie.AddTickets(amount, price);
+        //     await _movieRepository.UpdateAsync(movie);
+        // }
 
         public async Task CreateAsync(Guid id, string title, string description, string type, string director, string producer, DateTime dateTime)
         {

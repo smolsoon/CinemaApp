@@ -13,6 +13,7 @@ namespace Cinema.Model.Domain
         public string Role { get; protected set; }
         public string Email {get; protected set;}
         public string Password {get; protected set;}
+        public IEnumerable<Ticket> PurchasedTickets{ get; set;}
 
 
         public User(Guid id, string role, string username, string email, string password)

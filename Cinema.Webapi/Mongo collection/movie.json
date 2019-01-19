@@ -1,0 +1,40 @@
+{
+    "_id" : "e061ff40-f392-6946-8f37-4ecc59e38d3e",
+    "Title" : "Harry",
+    "Description" : "Leonsardoasdsada",
+    "Type" : "Fantadassdadsy",
+    "Director" : "lalaasadala",
+    "Producer" : "adsadadsadasdaaaaaaaaaaaaaaaaaaaaaad",
+    "DateTime" : "2018-09-12T12:42:31.000Z",
+    "Tickets" : 
+        [
+            {
+            "_id":"",
+            "Title": "Harry",
+            "Seating": 1,
+            "Price" : 20,
+            "Available" : 0
+            },
+            {
+            "_id":"",
+            "Title": "Harry",
+            "Seating": 2,
+            "Price" : 20,
+            "Available" : 0
+            },
+            {
+            "_id":"",
+            "Title": "Harry",
+            "Seating": 3,
+            "Price" : 20,
+            "Available" : 1
+            },
+            {
+            "_id":"",
+            "Title": "Harry",
+            "Seating": 4,
+            "Price" : 20,
+            "Available" : 0
+            }
+        ]
+}

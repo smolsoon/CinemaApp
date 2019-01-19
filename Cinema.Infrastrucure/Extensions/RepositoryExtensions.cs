@@ -31,17 +31,17 @@ namespace Cinema.Infrastrucure.Extensions
             return user;            
         }
 
-        public static async Task<Ticket> GetTicketOrFailAsync(this IMovieRepository repository, Guid movieId,
-            Guid ticketId)
-        {
-            var movie = await repository.GetOrFailAsync(movieId);
-            var ticket = movie.GetTickets().SingleOrDefault(x => x.Id == ticketId);
-            if(ticket == null)
-            {
-                throw new Exception($"Ticket with id: '{ticketId}' was not found for event: '{movie.Title}'");
-            }
+        // public static async Task<Ticket> GetTicketOrFailAsync(this IMovieRepository repository, Guid movieId,
+        //     Guid ticketId)
+        // {
+        //     var movie = await repository.GetOrFailAsync(movieId);
+        //     var ticket = movie.GetTickets().SingleOrDefault(x => x.Id == ticketId);
+        //     if(ticket == null)
+        //     {
+        //         throw new Exception($"Ticket with id: '{ticketId}' was not found for event: '{movie.Title}'");
+        //     }
 
-            return ticket;            
-        }       
+        //     return ticket;            
+        // }       
     }
 }

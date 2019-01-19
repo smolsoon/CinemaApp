@@ -21,7 +21,7 @@ namespace Cinema.Webapi.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> Get()
             => Json(await _userService.GetAccountAsync(UserId));
 
