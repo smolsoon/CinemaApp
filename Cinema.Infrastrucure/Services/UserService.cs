@@ -22,7 +22,7 @@ namespace Cinema.Infrastrucure.Services
             _jwtHandler = jwtHandler;
             _mapper = mapper;
         }
-
+            
         public async Task<AccountDTO> GetAccountAsync(Guid userId)
         {
             var user = await _userRepository.GetAsync(userId);
@@ -51,8 +51,9 @@ namespace Cinema.Infrastrucure.Services
         public async Task RegisterAsync(Guid userId, string email, string username, string password, string role = "user")
         {
             var user = await _userRepository.GetAsync(email);
-            if(user != null)
+            if(user != null) {
                 throw new Exception($"User with email: '{email}' already exists.");
+            }
             
             user = new User(userId, role, username, email, password);
             await _userRepository.AddAsync(user);
