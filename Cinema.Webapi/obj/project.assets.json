@@ -42,19 +42,6 @@
           "lib/netstandard1.3/DnsClient.dll": {}
         }
       },
-      "FromHeaderAttribute/2.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.WebApi.Core": "5.2.4",
-          "Newtonsoft.Json": "11.0.2"
-        },
-        "compile": {
-          "lib/net45/FromHeaderAttribute.dll": {}
-        },
-        "runtime": {
-          "lib/net45/FromHeaderAttribute.dll": {}
-        }
-      },
       "JWT/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -82,30 +69,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
-        }
-      },
-      "Microsoft.AspNet.WebApi.Core/5.2.3": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.WebApi.Client": "5.2.3"
-        },
-        "compile": {
-          "lib/net45/System.Web.Http.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Http.dll": {}
-        }
-      },
-      "Microsoft.AspNet.WebApi.WebHost/5.2.3": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.WebApi.Core": "[5.2.3, 5.3.0)"
-        },
-        "compile": {
-          "lib/net45/System.Web.Http.WebHost.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Http.WebHost.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.1.1": {
@@ -3060,21 +3023,6 @@
           }
         }
       },
-      "Swagger-Net/8.3.20.403": {
-        "type": "package",
-        "dependencies": {
-          "FromHeaderAttribute": "2.0.4",
-          "Microsoft.AspNet.WebApi.Core": "5.2.3",
-          "Microsoft.AspNet.WebApi.WebHost": "5.2.3",
-          "Newtonsoft.Json": "11.0.2"
-        },
-        "compile": {
-          "lib/net45/Swagger.Net.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Swagger.Net.dll": {}
-        }
-      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -4939,17 +4887,6 @@
         "lib/netstandard1.3/DnsClient.xml"
       ]
     },
-    "FromHeaderAttribute/2.0.4": {
-      "sha512": "bHlN9738GFn/Lul+bKOQ/NU87eCTjQV8tP6mj8GNAZE8cj+dR129zVhVONQ0Yzfr4D1mI1PHCKn19EtZoVSbPw==",
-      "type": "package",
-      "path": "fromheaderattribute/2.0.4",
-      "files": [
-        ".signature.p7s",
-        "fromheaderattribute.2.0.4.nupkg.sha512",
-        "fromheaderattribute.nuspec",
-        "lib/net45/FromHeaderAttribute.dll"
-      ]
-    },
     "JWT/4.0.0": {
       "sha512": "cXKReUVgwg1LlIdeUOSEyNouPahkHVrzL7oxjmzYt1O+z7+1xbO1otBUrSEGk3/qsVvO9pCfc5Dxmm25T/4OSQ==",
       "type": "package",
@@ -4978,30 +4915,6 @@
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
         "microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
         "microsoft.aspnet.webapi.client.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebApi.Core/5.2.3": {
-      "sha512": "o90QYlRV8VKR1S7+EcJw9w8WSyVFLl+IIzN8ILZ+n2t6rsc/KS8kBxRzA7wCFPRUHhebCfLqilBk39phvanx3g==",
-      "type": "package",
-      "path": "microsoft.aspnet.webapi.core/5.2.3",
-      "files": [
-        "Content/web.config.transform",
-        "lib/net45/System.Web.Http.dll",
-        "lib/net45/System.Web.Http.xml",
-        "microsoft.aspnet.webapi.core.5.2.3.nupkg.sha512",
-        "microsoft.aspnet.webapi.core.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebApi.WebHost/5.2.3": {
-      "sha512": "J3pdvRynbid0jvdl+wY2obuppleVLiQS6JHa5JXmkDAoNjjFEes5bAZXNsytGMsGw0z0J+RUNgx5ztCuRwDKOA==",
-      "type": "package",
-      "path": "microsoft.aspnet.webapi.webhost/5.2.3",
-      "files": [
-        ".signature.p7s",
-        "lib/net45/System.Web.Http.WebHost.dll",
-        "lib/net45/System.Web.Http.WebHost.xml",
-        "microsoft.aspnet.webapi.webhost.5.2.3.nupkg.sha512",
-        "microsoft.aspnet.webapi.webhost.nuspec"
       ]
     },
     "Microsoft.AspNetCore/2.1.1": {
@@ -8012,20 +7925,6 @@
         "version.txt"
       ]
     },
-    "Swagger-Net/8.3.20.403": {
-      "sha512": "I4dm5P4WzMEG766WmO0k7EYchdKxVGAdAHFlXxuHvipbGfqZxTk7fN45nk7Nqvx3SQWv7uELbBZi7yZzzY9ifA==",
-      "type": "package",
-      "path": "swagger-net/8.3.20.403",
-      "files": [
-        ".signature.p7s",
-        "Content/SwaggerConfig.cs.pp",
-        "LICENSE.TXT",
-        "Tools/Init.ps1",
-        "lib/net45/Swagger.Net.dll",
-        "swagger-net.8.3.20.403.nupkg.sha512",
-        "swagger-net.nuspec"
-      ]
-    },
     "System.AppContext/4.3.0": {
       "sha512": "fKC+rmaLfeIzUhagxY17Q9siv/sPrjjKcfNg1Ic8IlQkZLipo8ljcaZQu4VtI4Jqbzjc2VTjzGLF6WmsRXAEgA==",
       "type": "package",
@@ -8080,7 +7979,7 @@
       ]
     },
     "System.Buffers/4.5.0": {
-      "sha512": "xpHYjjtyTEpzMwtSQBWdVc3dPjLdQtvyUg6fBlBqcLl1r2Y7gDG/W/enAYOB98nG3oD3Q153Y2FBO8JDWd+0Xw==",
+      "sha512": "09yL/QiPEDZI9JLg0R0OcGe/0ycFm69QN16DCvXkqkIorCC1Y2EKwk5KvSlfMmGse+LcKkD3H+Cra7fFkxHXEg==",
       "type": "package",
       "path": "system.buffers/4.5.0",
       "files": [
@@ -12926,8 +12825,7 @@
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
       "MongoDB.Driver >= 2.7.2",
-      "Newtonsoft.Json >= 12.0.1",
-      "Swagger-Net >= 8.3.20.403"
+      "Newtonsoft.Json >= 12.0.1"
     ]
   },
   "packageFolders": {
@@ -13001,10 +12899,6 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[12.0.1, )"
-          },
-          "Swagger-Net": {
-            "target": "Package",
-            "version": "[8.3.20.403, )"
           }
         },
         "imports": [
@@ -13014,56 +12908,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'FromHeaderAttribute 2.0.4' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "FromHeaderAttribute",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.3' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.WebApi.Core",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebApi.WebHost 5.2.3' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.WebApi.WebHost",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Swagger-Net 8.3.20.403' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Swagger-Net",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Detected package downgrade: Microsoft.AspNet.WebApi.Core from 5.2.4 to 5.2.3. Reference the package directly from the project to select a different version. \r\n Cinema.Webapi -> Swagger-Net 8.3.20.403 -> FromHeaderAttribute 2.0.4 -> Microsoft.AspNet.WebApi.Core (>= 5.2.4) \r\n Cinema.Webapi -> Swagger-Net 8.3.20.403 -> Microsoft.AspNet.WebApi.Core (>= 5.2.3)",
-      "libraryId": "Microsoft.AspNet.WebApi.Core",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    }
-  ]
+  }
 }

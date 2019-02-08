@@ -34,19 +34,5 @@ namespace Cinema.Infrastrucure.Repositories
         public async Task UpdateAsync(User user)
             => await _database.Users.ReplaceOneAsync(x => x._id == user._id, user);
 
-        public Task<IEnumerable<Ticket>> GetTickets()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Ticket> PurchaseTickets(Ticket ticket)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Ticket> CancelTickets(Ticket ticket)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

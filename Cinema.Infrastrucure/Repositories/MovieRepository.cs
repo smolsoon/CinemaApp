@@ -43,39 +43,6 @@ namespace Cinema.Infrastrucure.Repositories
         public async Task DeleteAsync(Movie movie)
             => await _movieContext.Movies.DeleteOneAsync(x => x._id == movie._id);
 
-        // public async Task<IEnumerable<Ticket>> GetTicketsAsync(Guid id)
-        // {
-        //     // var filter = Builders<Movie>.Filter.Eq("_id",id);
-        //     // IEnumerable<Ticket> ticket = _movieContext.Movies.Find(Tickets => true).ToListAsync();
-        //     // return await Task.FromResult<Task<IEnumerable<Ticket>>>();
-
-        //     // var ticket = await _movieContext.Movies
-        //     //     .AsQueryable()
-        //     //     .Where(x=>x._id == id)
-        //     //     .ToListAsync();
-        //     // return ticket;
-        //     throw new NotImplementedException();
-        // }
-
-        // public async Task<IEnumerable<Ticket>> AddTicketAsyn(Movie ticket)
-        // {
-        //     //return await _movieContext.Movies.InsertOneAsync(ticket);
-        //     throw new NotImplementedException();
-        // }
-
-        // public async Task<IEnumerable<Ticket>> UpdateTicketAync(Ticket ticket)
-        // {
-        //     throw new NotImplementedException();
-        // }
-
-        // public async Task<IEnumerable<Ticket>> DeleteTicketAsync(Ticket ticket)
-        // {
-        //     throw new NotImplementedException();
-        // }
-
-        // public Task<IEnumerable<Ticket>> AddTicketAsync(Ticket ticket)
-        // {
-        //     throw new NotImplementedException();
-        // }
+    
     }
 }

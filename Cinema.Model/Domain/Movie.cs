@@ -5,23 +5,20 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Cinema.Model.Domain
-{
-    public class Movie 
-    {
-        //private ISet<Ticket> _tickets { get; set; }
+namespace Cinema.Model.Domain {
+    public class Movie {
+        
         [BsonId]
         public Guid _id { get; protected set; }
-        public string Title { get; protected set; } 
-        public string Description { get; protected set; } 
-        public string Type { get; protected set; } 
-        public string Director { get; protected set; } 
+        public string Title { get; protected set; }
+        public string Description { get; protected set; }
+        public string Type { get; protected set; }
+        public string Director { get; protected set; }
         public string Producer { get; protected set; }
         public DateTime DateTime { get; protected set; }
-        private IEnumerable<Ticket> Tickets { get; set;}
-        
-        public Movie(Guid id, string title, string description, string type, string director, string producer, DateTime dateTime)
-        {
+        private IEnumerable<Ticket> Tickets { get; set; }
+
+        public Movie (Guid id, string title, string description, string type, string director, string producer, DateTime dateTime) {
             _id = id;
             Title = title;
             Description = description;
@@ -70,6 +67,6 @@ namespace Cinema.Model.Domain
 
         // public IEnumerable<Ticket> GetTicketsPurchasedByUser(User user)
         //     => PurchasedTickets.Where(x => x.UserId == user._id);
-        
-      }
+
+    }
 }
