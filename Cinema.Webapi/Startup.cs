@@ -70,7 +70,9 @@ namespace Cinema.Webapi {
             }
 
             app.UseCors (x =>
-                x.AllowAnyOrigin ()
+                x.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
             );
 
             //app.UseHttpsRedirection();

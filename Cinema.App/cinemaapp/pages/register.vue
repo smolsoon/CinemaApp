@@ -8,18 +8,11 @@
           <Notification :message="error" v-if="error"/>
 
           <form method="post" @submit.prevent="register">
-
             <div class="field">
               <label class="label">Username</label>
 
               <div class="control">
-                <input
-                  type="text"
-                  class="input"
-                  name="username"
-                  v-model="username"
-                  required
-                >
+                <input type="text" class="input" name="username" v-model="username" required>
               </div>
             </div>
 
@@ -27,13 +20,7 @@
               <label class="label">Email</label>
 
               <div class="control">
-                <input
-                  type="email"
-                  class="input"
-                  name="email"
-                  v-model="email"
-                  required
-                >
+                <input type="email" class="input" name="email" v-model="email" required>
               </div>
             </div>
 
@@ -41,13 +28,7 @@
               <label class="label">Password</label>
 
               <div class="control">
-                <input
-                  type="password"
-                  class="input"
-                  name="password"
-                  v-model="password"
-                  required
-                >
+                <input type="password" class="input" name="password" v-model="password" required>
               </div>
             </div>
 
@@ -56,8 +37,8 @@
             </div>
           </form>
 
-          <div class="has-text-centered" style="margin-top: 20px">
-            Already got an account? <nuxt-link to="/login">Login</nuxt-link>
+          <div class="has-text-centered" style="margin-top: 20px">Already got an account?
+            <nuxt-link to="/login">Login</nuxt-link>
           </div>
         </div>
       </div>
@@ -66,46 +47,49 @@
 </template>
 
 <script>
-import Notification from '~/components/Notification';
+import axios from "axios";
+import Notification from "~/components/Notification";
 
 export default {
-  middleware: 'guest',
+  middleware: "guest",
 
   components: {
-    Notification,
+    Notification
   },
 
   data() {
     return {
-      username: '',
-      email: '',
-      password: '',
-      error: null,
+      username: "",
+      email: "",
+      password: "",
+      role:"user",
+      error: null
     };
   },
 
   methods: {
     async register() {
       try {
-        await this.$axios.post('account/register', {
-          username: this.username,
-          email: this.email,
-          password: this.password,
-        });
-
-        await this.$auth.loginWith('local', {
-          data: {
+        axios
+          .post("http://localhost:5000/account/register", {
+            username: this.username,
             email: this.email,
             password: this.password,
-          },
-        });
-
-        this.$router.push('/');
+            role: "user"
+          })
+          .then(function(res) {
+            console.log("Data: ", res);
+            console.log(res);
+            this.$router.push("/");
+          })
+          .catch(function(error) {
+            console.log("Error:", error);
+          });
       } catch (e) {
-        this.error = e.response.data.message;
+        console.log(e);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

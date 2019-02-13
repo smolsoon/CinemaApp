@@ -24,9 +24,11 @@
             </div>
           </div>
           <template v-else>
+            <nuxt-link class="navbar-item" to="/createMovie">Dodaj film</nuxt-link>
             <nuxt-link class="navbar-item" to="/movies">Filmy</nuxt-link>
             <nuxt-link class="navbar-item" to="/register">Rejestracja</nuxt-link>
             <nuxt-link class="navbar-item" to="/login">Logowanie</nuxt-link>
+            <nuxt-link class="navbar-item" to="/account">Profil</nuxt-link>
           </template>
         </div>
       </div>

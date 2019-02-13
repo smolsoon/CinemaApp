@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  middleware: 'auth',
+  middleware: "auth",
 
   computed: {
-    ...mapGetters(['loggedInUser']),
-  },
+    ...mapGetters(["loggedInUser"])
+  }
 };
 </script>

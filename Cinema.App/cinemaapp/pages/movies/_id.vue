@@ -1,25 +1,24 @@
 <template>
   <section class="section">
     <div class="container">
-      <h2 class="title">Movies</h2>
+      <h2 class="title"></h2>
       <!-- {{ this.$route.params.id}} -->
       <div v-if="movie!=null" class="content">
-        <strong>Title:</strong>
-        {{ movie.title }}
+        <h2 class="title">{{ movie.title }}</h2>
         <br>
-        <strong>Description:</strong>
+        <strong>Opis:</strong>
         {{ movie.description}}
         <br>
-        <strong>Type:</strong>
+        <strong>Gatunek:</strong>
         {{ movie.type }}
         <br>
-        <strong>Director:</strong>
+        <strong>Rezyser:</strong>
         {{ movie.director}}
         <br>
-        <strong>Producer:</strong>
+        <strong>Producent:</strong>
         {{ movie.producer}}
         <br>
-        <strong>Date Time:</strong>
+        <strong>Data:</strong>
         {{ movie.dateTime}}
         <br>
 
@@ -47,24 +46,6 @@ export default {
       .catch(function(error) {
         console.log("Error:", error);
       })
-      // axios.post('http://localhost:5000/movies',{
-      //   title:"Harry",
-      // 	description:"Leonsardoasdsada",
-      // 	type:"Fantadassdadsy",
-      // 	director:"lalaasadala",
-      // 	producer:"adsadadsadasdaaaaaaaaaaaaaaaaaaaaaad",
-      // 	datetime:"2018-09-12T12:42:31Z",
-      // 	seating: 5,
-      //   price : 5
-
-      //   }
-      // )
-      .then(function(res) {
-        console.log("Data: ", res);
-      })
-      .catch(function(error) {
-        console.log("Error:", error);
-      });
   }
 };
 </script>

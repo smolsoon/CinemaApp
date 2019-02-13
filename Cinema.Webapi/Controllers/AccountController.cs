@@ -34,7 +34,7 @@ namespace Cinema.Webapi.Controllers {
         }
 
         [HttpPost ("login")]
-        [EnableCors ("AllowAll")]
         public async Task<IActionResult> Post ([FromBody] Login command) => Json (await _userService.LoginAsync (command.Email, command.Password));
+    
     }
 }

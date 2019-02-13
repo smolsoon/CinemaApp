@@ -8,17 +8,11 @@
           <Notification :message="error" v-if="error"/>
 
           <form method="post" @submit.prevent="login">
-
             <div class="field">
               <label class="label">Email</label>
 
               <div class="control">
-                <input
-                  type="email"
-                  class="input"
-                  name="email"
-                  v-model="email"
-                >
+                <input type="email" class="input" name="email" v-model="email">
               </div>
             </div>
 
@@ -26,23 +20,17 @@
               <label class="label">Password</label>
 
               <div class="control">
-                <input
-                  type="password"
-                  class="input"
-                  name="password"
-                  v-model="password"
-                >
+                <input type="password" class="input" name="password" v-model="password">
               </div>
             </div>
-
             <div class="control">
               <button type="submit" class="button is-dark is-fullwidth">Log In</button>
             </div>
           </form>
 
           <div class="has-text-centered" style="margin-top: 20px">
-            <p>
-              Don't have an account? <nuxt-link to="/register">Register</nuxt-link>
+            <p>Don't have an account?
+              <nuxt-link to="/register">Register</nuxt-link>
             </p>
           </div>
         </div>
@@ -51,49 +39,46 @@
   </section>
 </template>
 
+
 <script>
-import Notification from '~/components/Notification';
- import axios from 'axios'
+import Notification from "~/components/Notification";
+import axios from "axios";
 export default {
-  middleware: 'guest',
+  middleware: "guest",
 
   components: {
-    Notification,
+    Notification
   },
 
   data() {
     return {
-      email: '',
-      password: '',
-      error: null,
+      email: "",
+      password: "",
+      error: null
     };
   },
 
   methods: {
     login() {
       try {
-axios.post('http://localhost:5000/account/login',{
-  email:this.email,
-  password:this.password
-
-  }
-)
-.then (function(res){
-      console.log('Data: ', res);
-      console.log(res)
-        this.$router.push('/');
-    })
-    .catch( function(error){
-      console.log('Error:' ,error);
-    })
-
-
-
+        axios
+          .post("http://localhost:5000/account/login", {
+            email: this.email,
+            password: this.password
+          })
+          .then(function(res) {
+            console.log("Data: ", res);
+            console.log(res);
+            //this.$router.push("/");
+          })
+          .catch(function(error) {
+            console.log("Error:", error);
+          });
       } catch (e) {
         console.log(e);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
